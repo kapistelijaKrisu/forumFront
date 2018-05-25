@@ -13,6 +13,7 @@ export default connect(
 )(LogoutButton)
 
 const buttonStyle = {
+  cursor: 'pointer',
   float: 'right',
   fontFamily: 'Amaranth',
   fontWeight: 'bold',
@@ -24,5 +25,5 @@ const buttonStyle = {
   color: '#DCDCDC',
   border: 'none',
   borderRadius: '5px',
-  background: 'linear-gradient(70deg, #000, #AAA)'
+  background: 'linear-gradient(70deg, #AAA, #000)'
 }

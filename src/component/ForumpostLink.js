@@ -9,6 +9,7 @@ class ForumpostLink extends Component {
             return <div />
         }
         const forumpost = {
+            height:'2em',
             fontSize:20,
             paddingTop: 10,
             paddingLeft: 2,

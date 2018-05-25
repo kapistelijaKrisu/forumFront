@@ -27,18 +27,17 @@ class CommentForm extends React.Component {
 
     render() {
         return (
+                <form style={commentFormStyle} onSubmit={this.postComment}>
+                    <input
+                        type="text"
+                        name="content"
+                        value={this.state.content}
+                        onChange={this.handleLoginFieldChange}
+                    />
+                    <br />
 
-            <form onSubmit={this.postComment}>
-                <input
-                    type="text"
-                    name="content"
-                    value={this.state.content}
-                    onChange={this.handleLoginFieldChange}
-                />
-                <br />
-               
-                <button type="submit">Add comment</button>
-            </form>
+                    <button type="submit">Add comment</button>
+                </form>
         )
     }
 }
@@ -49,7 +48,16 @@ const mapStateToProps = (state) => {
 }
 
 export default connect(
-  mapStateToProps,
-  { addComment }
+    mapStateToProps,
+    { addComment }
 
 )(CommentForm)
+
+const commentFormStyle = {
+    overflow: 'auto',
+    minHeight: '1.6em',
+    width: '100%',
+    fontSize: 28,
+    fontStyle: 'bold',
+    background: 'linear-gradient(70deg, #333, #777)'
+}

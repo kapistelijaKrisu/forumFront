@@ -81,7 +81,6 @@ const teaxtAreaStyle = {
   height: '30px',
   marginLeft: '3px',
   color: '#444',
-  border: 'none',
   borderRadius: '5px',
   background: 'DCDCDC',
   fontFamily: 'Amaranth',
@@ -90,6 +89,7 @@ const teaxtAreaStyle = {
 }
 
 const buttonStyle = {
+  cursor: 'pointer',
   float: 'right',
   fontFamily: 'Amaranth',
   fontWeight: 'bold',

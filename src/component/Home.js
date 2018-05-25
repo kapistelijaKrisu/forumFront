@@ -8,11 +8,9 @@ const Home = ({ categories, dude }) => {
     return (
         <div>
             {form}
-            <ul>
-                {categories.map(category =>
-                    <CategoryLink key={category.categoryid} category={category} />
-                )}
-            </ul>
+            {categories.map(category =>
+                <CategoryLink key={category.categoryid} category={category} />
+            )}
         </div>
     )
 }

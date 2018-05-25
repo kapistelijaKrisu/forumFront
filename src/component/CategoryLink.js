@@ -1,23 +1,38 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
 
 const CategoryLink = ({ category }) => {
     if (category === undefined) {
         return <div />
     }
-    const categoryStyle = {
-        paddingTop: 10,
-        paddingLeft: 2,
-        border: 'solid',
-        borderWidth: 1,
-        marginBottom: 5
+
+    const redirectLink = () => {
+        window.location = `/category/${category.categoryid}`
     }
+
     return (
-        <div style={categoryStyle}>
-            <Link to={`/category/${category.categoryid}`}>{category.name}</Link>
-            <p>{category.description}</p>
+        <div style={categoryStyle} onClick={() => { redirectLink() }}>
+
+            <p syle={{ fontSize: '1.1em' }}>{category.name}</p>
+            <p style={{ fontSize: '0.9em' }}>{category.description}</p>
         </div>
     )
 }
 
 export default CategoryLink
+
+const categoryStyle = {
+    paddingTop: 10,
+    border: 'solid',
+    borderWidth: 1,
+    marginBottom: 5,
+    marginTop: '5px',
+    minHeight: '1.6em',
+    width: '100%',
+    fontStyle: 'bold',
+    background: 'linear-gradient(70deg, #FF8833, #333)',
+    fontFamily: 'Amaranth',
+    fontWeight: 'bold',
+    fontSize: '1.2em',
+    cursor: 'pointer',
+    color: '#333'
+}
