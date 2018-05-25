@@ -9,14 +9,15 @@ class ForumpostLink extends Component {
             return <div />
         }
         const forumpost = {
+            fontSize:20,
             paddingTop: 10,
             paddingLeft: 2,
             border: 'solid',
-            borderWidth: 1,
+            borderWidth: 5,
+            borderColor: '#C0C0C0',
             marginBottom: 5,
-            background: 'pink'
+            background: 'linear-gradient(70deg, #f0f1AB, #999)'
         }
-        console.log(this.props.forumpost)
         return (
             <div style={forumpost}>
 

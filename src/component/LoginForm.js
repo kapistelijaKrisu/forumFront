@@ -36,24 +36,27 @@ class LoginForm extends React.Component {
 
 
   render() {
+    
     return (
       <div>
-        user
-            <input
+        <span style={textStyle}> user </span>
+        <input
+          style={teaxtAreaStyle}
           type="text"
           name="username"
           value={this.state.username}
           onChange={this.handleLoginFieldChange}
         />
-        password
-            <input
+        <span style={textStyle}> password </span>
+        <input
+          style={teaxtAreaStyle}
           type="password"
           name="password"
           value={this.state.password}
           onChange={this.handleLoginFieldChange}
         />
-        <button type="submit" name="login" onClick={this.signup}>login</button>
-        <button type="submit" name="register" onClick={this.signup}>register</button>
+        <button style={buttonStyle} type="submit" name="login" onClick={this.signup}>login</button>
+        <button style={buttonStyle} type="submit" name="register" onClick={this.signup}>register</button>
       </div>
     )
   }
@@ -64,3 +67,39 @@ export default connect(
   { login, register, notify }
 
 )(LoginForm)
+
+const textStyle = {
+  padding: '0.8em',
+  color: '#DCDCDC',
+  fontFamily: 'Amaranth',
+  fontWeight: 'bold'
+}
+
+const teaxtAreaStyle = {
+  marginTop: '6px',
+  width: '8em',
+  height: '30px',
+  marginLeft: '3px',
+  color: '#444',
+  border: 'none',
+  borderRadius: '5px',
+  background: 'DCDCDC',
+  fontFamily: 'Amaranth',
+  fontWeight: 'bold',
+  fontSize: '1em'
+}
+
+const buttonStyle = {
+  float: 'right',
+  fontFamily: 'Amaranth',
+  fontWeight: 'bold',
+  fontSize: '1em',
+  width: '5em',
+  height: '1.3em',
+  marginTop: '4px',
+  marginRight: '10px',
+  color: '#DCDCDC',
+  border: 'none',
+  borderRadius: '5px',
+  background: 'linear-gradient(70deg, #000, #AAA)'
+}

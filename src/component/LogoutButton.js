@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { logout } from '../reducers/dude'
 
 const LogoutButton = (props) => (
-  <button onClick={props.logout} name="logout">logout</button>
+  <button style={buttonStyle} onClick={props.logout} name="logout">logout</button>
 )
 
 export default connect(
@@ -11,3 +11,18 @@ export default connect(
   { logout }
 
 )(LogoutButton)
+
+const buttonStyle = {
+  float: 'right',
+  fontFamily: 'Amaranth',
+  fontWeight: 'bold',
+  fontSize: '1em',
+  width: '5em',
+  height: '1.3em',
+  marginRight: '10px',
+  marginTop: '5px',
+  color: '#DCDCDC',
+  border: 'none',
+  borderRadius: '5px',
+  background: 'linear-gradient(70deg, #000, #AAA)'
+}

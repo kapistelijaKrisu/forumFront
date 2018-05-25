@@ -2,23 +2,14 @@ import React from 'react'
 import { connect } from 'react-redux'
 import LoginForm from './LoginForm'
 import LogoutButton from './LogoutButton'
-import Menu from './Menu'
+import { Link } from 'react-router-dom'
 
 const TopBar = ({ dude }) => {
 
-  const menuStyle = {
-    textAlign: 'center',
-    fontSize: 28,
-    paddingTop: 3,
-    paddingLeft: 22,
-    fontStyle: 'italic',
-    marginBottom: 1,
-    background: 'lightblue'
-  }
-
   const loginOrLogout = dude === null ? <LoginForm />
     : <div style={menuStyle}>
-      <Menu />
+      <Link style={topLinkStyle}  to="/" >Home</Link> &nbsp;
+      <Link style={topLinkStyle}  to={'/dude/'+dude.dudeid} >Your posts</Link> &nbsp;
       <LogoutButton />
     </div>
   return (
@@ -38,3 +29,20 @@ export default connect(
   {}
 
 )(TopBar)
+
+const topLinkStyle = {
+  marginLeft:'2em',
+  color: '#CDCDCD',
+  fontSize: 28,
+  fontStyle: 'bold',
+  opacity:1.0
+}
+
+const menuStyle = {
+  overflow: 'auto',
+  minHeight: '1.6em',
+  width: '100%',
+  fontSize: 28,
+  fontStyle: 'bold',
+  background: 'linear-gradient(70deg, #333, #777)'
+}

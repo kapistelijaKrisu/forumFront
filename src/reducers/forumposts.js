@@ -14,10 +14,19 @@ const forumpostReducer = (store = [], action) => {
     }
 }
 
-export const getForumposts = (categoryid) => {
+export const getForumpostsByCategory = (categoryid) => {
     return async (dispatch) => {
         const forumposts = await forumposterivce.getForumpostsByCategory(categoryid)
-        console.log(forumposts)
+        dispatch({
+            type: GET_FORUMPOSTS,
+            forumposts
+        })
+    }
+}
+
+export const getForumpostsByDude = (dudeid) => {
+    return async (dispatch) => {
+        const forumposts = await forumposterivce.getForumpostsByDude(dudeid)
         dispatch({
             type: GET_FORUMPOSTS,
             forumposts

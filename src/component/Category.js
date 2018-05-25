@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { getForumposts } from '../reducers/forumposts'
+import { getForumpostsByCategory } from '../reducers/forumposts'
 import ForumpostLink from './ForumpostLink'
 import ForumpostForm from './ForumpostForm';
 
@@ -14,7 +14,7 @@ class Category extends Component {
 
     componentWillMount = async () => {
         if (this.props.categoryid !== undefined) {
-            await this.props.getForumposts(this.props.categoryid)
+            await this.props.getForumpostsByCategory(this.props.categoryid)
         }
     }
 
@@ -44,6 +44,6 @@ const mapStateToProps = (state) => {
 }
 export default connect(
     mapStateToProps,
-    { getForumposts }
+    { getForumpostsByCategory }
 
 )(Category)
