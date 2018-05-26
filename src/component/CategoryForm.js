@@ -7,8 +7,13 @@ class CategoryForm extends Component {
         super()
         this.state = {
             name: '',
-            description: ''
+            description: '',
+            visible: false
         }
+    }
+
+    hideShow = () => {
+        this.setState({ visible: this.state.visible ? false : true })
     }
 
     handleLoginFieldChange = (event) => {
@@ -29,31 +34,45 @@ class CategoryForm extends Component {
     }
 
     render() {
-        return (
+        const hideShowButton =
+            <button
+                style={categoryButtonStyle}
+                onClick={this.hideShow}>
+                {this.state.visible ? 'Hide' : 'Open Form'}
+            </button>
 
-            <form
-                style={categoryFormStyle}
-                onSubmit={this.postCategory}>
-                <p>Add Category </p>
-                <span> name</span>
-                <input
-                style={categoryTextStyle}
-                    type="text"
-                    name="name"
-                    value={this.state.name}
-                    onChange={this.handleLoginFieldChange}
-                />
-                <br />
-                <span> description</span>
-                <input
-                style={categoryTextStyle}
-                    type="text"
-                    name="description"
-                    value={this.state.description}
-                    onChange={this.handleLoginFieldChange}
-                />
-                <button style={categoryButtonStyle} type="submit">Add category</button>
-            </form>
+        let toDisplay
+        this.state.visible ?
+            toDisplay = <div>
+                <form
+                    style={categoryFormStyle}
+                    onSubmit={this.postCategory}>
+                    <p>Add Category </p>
+                    <span> name</span>
+                    <input
+                        style={categoryTextStyle}
+                        type="text"
+                        name="name"
+                        value={this.state.name}
+                        onChange={this.handleLoginFieldChange}
+                    />
+                    <br />
+                    <span> description</span>
+                    <input
+                        style={categoryTextStyle}
+                        type="text"
+                        name="description"
+                        value={this.state.description}
+                        onChange={this.handleLoginFieldChange}
+                    />
+                    <button style={categoryButtonStyle} type="submit">Add category</button>
+                    {hideShowButton}
+                </form></div>
+            : toDisplay = <div>{hideShowButton}</div>
+
+        console.log(toDisplay)
+        return (
+            toDisplay
         )
     }
 }
@@ -66,7 +85,7 @@ export default connect(
 const categoryTextStyle = {
     margin: '10px',
     minHeight: '0.7em',
-    width:'70%',
+    width: '70%',
     fontStyle: 'bold',
     fontFamily: 'Amaranth',
     fontWeight: 'bold',
@@ -91,7 +110,7 @@ const categoryFormStyle = {
 
 const categoryButtonStyle = {
     cursor: 'pointer',
-    overflow:'auto',
+    overflow: 'auto',
     fontFamily: 'Amaranth',
     fontWeight: 'bold',
     fontSize: '0.9em',
@@ -103,4 +122,4 @@ const categoryButtonStyle = {
     border: 'none',
     borderRadius: '5px',
     background: 'linear-gradient(70deg, #775900, #000)'
-  }
+}
