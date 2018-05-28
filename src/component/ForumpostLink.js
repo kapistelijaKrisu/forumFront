@@ -17,7 +17,8 @@ class ForumpostLink extends Component {
             borderWidth: 5,
             borderColor: '#C0C0C0',
             marginBottom: 5,
-            background: 'linear-gradient(70deg, #f0f1AB, #999)'
+            background: 'linear-gradient(70deg, #e9eb50, #333)'
+          //  background: 'linear-gradient(70deg, #c2f3cd, #999)'
         }
         return (
             <div style={forumpost}>

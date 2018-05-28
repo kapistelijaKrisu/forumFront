@@ -9,6 +9,7 @@ import NotificationFooter from './component/NotificationFooter'
 import Home from './component/Home'
 import { getCategories } from './reducers/category'
 import DudeOverView from './component/DudeOverView';
+import ForumpostForm from './component/ForumpostForm';
 
 
 class App extends Component {
@@ -34,6 +35,7 @@ class App extends Component {
             <PersonalPage />
             <CategoryPage />
             <ForumpostPage />
+            <ForumpostFormPage />
           </div>
         </Router>
 
@@ -67,6 +69,15 @@ const ForumpostPage = () => {
   return (
     <Route exact path="/category/:categoryid/forumpost/:forumpostid" render={({ match, history }) =>
       <Forumpost forumpostid={match.params.forumpostid}
+      />}
+    />
+  )
+}
+
+const ForumpostFormPage = () => {
+  return (
+    <Route exact path="/category/:categoryid/post" render={({ match, history }) =>
+      <ForumpostForm categoryid={match.params.categoryid}
       />}
     />
   )

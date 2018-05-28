@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { addForumpost } from '../reducers/forumposts'
+import autosize from 'autosize'
 
 class ForumpostForm extends Component {
     constructor() {
@@ -10,6 +11,10 @@ class ForumpostForm extends Component {
             content: ''
         }
     }
+
+    componentDidMount() {
+        autosize(this.textarea);
+      }
 
     handleLoginFieldChange = (event) => {
         this.setState({ [event.target.name]: event.target.value })
@@ -29,6 +34,8 @@ class ForumpostForm extends Component {
         this.setState({ name: '', description: '' })
     }
 
+   
+
     render() {
         return (
 
@@ -37,7 +44,7 @@ class ForumpostForm extends Component {
             onSubmit={this.postForumpost}
             style={forumpostFormStyle}
             >
-                <p style={{width:'100%', padding:'1em'}}>Title</p>
+                <p style={{paddingTop:'1em'}}>Title</p>
                 
                 <input
                 style={forumpostTextStyle}
@@ -46,15 +53,17 @@ class ForumpostForm extends Component {
                     value={this.state.title}
                     onChange={this.handleLoginFieldChange}
                 />
-                <br />
-                <p style={{width:'100%', padding:'1em'}}>Content</p>
+                <p style={{paddingTop:'1em'}}>Content</p>
                 <textarea
-                style={{ ...forumpostTextStyle, ...{height:'10em', fontSize:'0.8em'}}}
+                style={forumpostTextAreaStyle}
+                ref={c => (this.textarea = c)}
+                rows={15}
                     type="text"
                     name="content"
                     value={this.state.content}
                     onChange={this.handleLoginFieldChange}
                 />
+                <br/>
                 <button 
                 type="submit"
                 style={forumpostButtonStyle}>Post!</button>
@@ -69,11 +78,20 @@ export default connect(
 
 )(ForumpostForm)
 
+const forumpostTextAreaStyle = {
+     fontSize:'0.8em',
+     width: '70%',
+     fontFamily: 'Amaranth',
+     color: '#111111',
+     background: 'DDD',
+     borderRadius: '5px'
+}
+
 
 const forumpostTextStyle = {
     padding:'3px',
     minHeight: '0.7em',
-    width: '98%',
+    width: '70%',
     fontStyle: 'bold',
     fontFamily: 'Amaranth',
     fontWeight: 'bold',
@@ -84,31 +102,26 @@ const forumpostTextStyle = {
 }
 
 const forumpostFormStyle = {
-    align:'center',
-    margin: '5px',
+    margin: 'auto',
     textAlign:'center',
     minHeight: '1.6em',
-    width: '100%',
+    width: '80%',
     fontStyle: 'bold',
-    background: 'linear-gradient(70deg, #CC7A00, #333)',
+    background: 'linear-gradient(70deg, #87421F, #333)',
     fontFamily: 'Amaranth',
     fontWeight: 'bold',
     fontSize: '1.5em',
-    color: '#333'
+    color: '#DCDCDC'
 }
 
 const forumpostButtonStyle = {
     cursor: 'pointer',
-    float:'center',
-    align:'center',
-    overflow: 'none',
+    margin:'0.8em',
     fontFamily: 'Amaranth',
     fontWeight: 'bold',
     fontSize: '0.9em',
     width: '8em',
-    height: '1.3em',
-    marginRight: '10px',
-    marginTop: '15px',
+    height: '1.5em',
     color: '#DCDCDC',
     border: 'none',
     borderRadius: '5px',
