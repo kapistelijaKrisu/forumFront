@@ -14,7 +14,7 @@ class ForumpostForm extends Component {
 
     componentDidMount() {
         autosize(this.textarea);
-      }
+    }
 
     handleLoginFieldChange = (event) => {
         this.setState({ [event.target.name]: event.target.value })
@@ -34,39 +34,39 @@ class ForumpostForm extends Component {
         this.setState({ name: '', description: '' })
     }
 
-   
+
 
     render() {
         return (
 
 
-            <form 
-            onSubmit={this.postForumpost}
-            style={forumpostFormStyle}
+            <form
+                onSubmit={this.postForumpost}
+                style={forumpostFormStyle}
             >
-                <p style={{paddingTop:'1em'}}>Title</p>
-                
+                <p style={{ paddingTop: '1em' }}>Title</p>
+
                 <input
-                style={forumpostTextStyle}
+                    style={forumpostTextStyle}
                     type="text"
                     name="title"
                     value={this.state.title}
                     onChange={this.handleLoginFieldChange}
                 />
-                <p style={{paddingTop:'1em'}}>Content</p>
+                <p style={{ paddingTop: '1em' }}>Content</p>
                 <textarea
-                style={forumpostTextAreaStyle}
-                ref={c => (this.textarea = c)}
-                rows={15}
+                    style={forumpostTextAreaStyle}
+                    ref={c => (this.textarea = c)}
+                    rows={15}
                     type="text"
                     name="content"
                     value={this.state.content}
                     onChange={this.handleLoginFieldChange}
                 />
-                <br/>
-                <button 
-                type="submit"
-                style={forumpostButtonStyle}>Post!</button>
+                <br />
+                <button
+                    type="submit"
+                    style={forumpostButtonStyle}>Post!</button>
             </form>
         )
     }
@@ -79,17 +79,17 @@ export default connect(
 )(ForumpostForm)
 
 const forumpostTextAreaStyle = {
-     fontSize:'0.8em',
-     width: '70%',
-     fontFamily: 'Amaranth',
-     color: '#111111',
-     background: 'DDD',
-     borderRadius: '5px'
+    fontSize: '0.8em',
+    width: '70%',
+    fontFamily: 'Amaranth',
+    color: '#111111',
+    background: 'DDD',
+    borderRadius: '5px'
 }
 
 
 const forumpostTextStyle = {
-    padding:'3px',
+    padding: '3px',
     minHeight: '0.7em',
     width: '70%',
     fontStyle: 'bold',
@@ -103,7 +103,7 @@ const forumpostTextStyle = {
 
 const forumpostFormStyle = {
     margin: 'auto',
-    textAlign:'center',
+    textAlign: 'center',
     minHeight: '1.6em',
     width: '80%',
     fontStyle: 'bold',
@@ -116,7 +116,7 @@ const forumpostFormStyle = {
 
 const forumpostButtonStyle = {
     cursor: 'pointer',
-    margin:'0.8em',
+    margin: '0.8em',
     fontFamily: 'Amaranth',
     fontWeight: 'bold',
     fontSize: '0.9em',

@@ -17,13 +17,10 @@ class CategoryForm extends Component {
     }
 
     handleLoginFieldChange = (event) => {
-        console.log(event.target.name)
-        console.log(event.target.value)
         this.setState({ [event.target.name]: event.target.value })
     }
     postCategory = async (event) => {
         event.preventDefault()
-        console.log('posting')
         try {
             await this.props.addCategory({ name: this.state.name, description: this.state.description })
 
@@ -69,8 +66,6 @@ class CategoryForm extends Component {
                     {hideShowButton}
                 </form></div>
             : toDisplay = <div>{hideShowButton}</div>
-
-        console.log(toDisplay)
         return (
             toDisplay
         )

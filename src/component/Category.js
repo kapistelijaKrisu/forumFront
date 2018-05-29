@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { getForumpostsByCategory } from '../reducers/forumposts'
 import ForumpostLink from './ForumpostLink'
-import ForumpostForm from './ForumpostForm';
 
 class Category extends Component {
 
@@ -28,17 +27,20 @@ class Category extends Component {
         }
 
         return (
-            <div style={{ margin: 'auto' }}>
+            <div>
                 <ul>
                     {this.props.forumposts.map(post =>
                         <ForumpostLink key={post.forumpostid} forumpost={post} />
                     )}
                 </ul>
                 {this.props.dude === null ? <p>login to post</p>
-                    : <div style={{ textAlign: 'center' }}><button
-                        style={forumpostButtonStyle}
-                        onClick={() => { this.redirectLink(this.props.categoryid) }}
-                    >Create a Post</button></div>}
+                    : <div style={{ textAlign: 'center' }}>
+                        <button
+                            style={forumpostButtonStyle}
+                            onClick={() => { this.redirectLink(this.props.categoryid) }}
+                        >Create a Post
+                    </button>
+                    </div>}
 
             </div>
         )
