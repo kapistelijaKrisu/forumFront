@@ -22,26 +22,27 @@ class Forumpost extends Component {
         }
     }
 
+    linkToCategory = (categoryid) => {
+        window.location = `/category/${categoryid}`
+    }
+
     render() {
         if (this.props.detailedForumpost === undefined) {
             return <div />
         }
+        console.log(this.props.detailedForumpost)
         return (
             <div style={{
                 margin: 'auto',
                 background: 'linear-gradient(70deg, #111, #444)'
             }}>
+                <p
+                    style={categoryStyle}
+                    onClick={() => { this.linkToCategory(this.props.detailedForumpost.categoryid) }}
+                >Back to {this.props.detailedForumpost.categoryname}
+                </p>
                 <div style={ledivstylie}>
                     <br />
-                    <span style={viewpostStyle}
-                    >Posted:{this.props.detailedForumpost.creatorid}
-                    </span>
-                    <p
-                        style={viewpostStyle}
-                        type="text"
-                        name="content"
-                        value={this.props.detailedForumpost.content}
-                    >{this.props.detailedForumpost.content}</p>
                     {this.props.detailedForumpost.comments.map(comment =>
                         <Comment key={comment.commentid}
                             comment={comment}
@@ -75,6 +76,20 @@ const ledivstylie = {
     borderColor: '#888',
 }
 
+const categoryStyle = {
+    marginTop: '2px',
+    paddingTop: 15,
+    paddingBottom: 0,
+    marginLeft: '5%',
+    width: '90%',
+    fontFamily: 'Amaranth',
+    fontStyle: 'italic',
+    fontSize: '1.3em',
+    cursor: 'pointer',
+    color: '#ccc',
+    textDecoration: 'underline'
+}
+
 const viewpostStyle = {
     borderRadius: '4px',
     border: 'solid',
@@ -89,6 +104,6 @@ const viewpostStyle = {
     width: '90%',
     fontFamily: 'Amaranth',
     color: '#ccc',
-    background: 'linear-gradient(70deg, #222, #555)',
+    background: 'linear-gradient(70deg, #222, #555)'
 
 }
