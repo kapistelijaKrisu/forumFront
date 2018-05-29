@@ -32,6 +32,7 @@ class ForumpostForm extends Component {
             console.log(exception)
         }
         this.setState({ name: '', description: '' })
+        window.location = `/category/${this.props.categoryid}`
     }
 
 

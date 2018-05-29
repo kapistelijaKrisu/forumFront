@@ -8,9 +8,11 @@ const commentsReducer = (store = { comments: [] }, action) => {
         case GET_FORUMPOST:
             return action.forumpost
         case ADD_COMMENT:
+        console.log('cur', store)
             const newStore = Object.assign({
+                store,
                 comments: store.comments.concat(action.comment)
-            }, store);
+            });
             return newStore
         default:
             return store

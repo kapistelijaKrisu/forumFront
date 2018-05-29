@@ -1,5 +1,4 @@
 import React from 'react'
-import forumpost from '../services/forumpost';
 
 
 const Comment = (props) => (
