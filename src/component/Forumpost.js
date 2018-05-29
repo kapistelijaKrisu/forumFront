@@ -27,10 +27,6 @@ class Forumpost extends Component {
     }
 
     render() {
-        if (this.props.detailedForumpost === undefined) {
-            return <div />
-        }
-        console.log(this.props.detailedForumpost)
         return (
             <div style={{
                 margin: 'auto',
@@ -50,7 +46,7 @@ class Forumpost extends Component {
                     )}
                 </div>
                 {this.props.dude === null ? <p> login to comment </p>
-                    : <CommentForm forumpost={this.props.detailedForumpost} />}
+                    : <CommentForm />}
 
 
             </div>
@@ -59,7 +55,6 @@ class Forumpost extends Component {
 }
 const mapStateToProps = (state) => {
     return {
-        forumposts: state.forumposts,
         detailedForumpost: state.detailedForumpost,
         dude: state.dude
     }
@@ -74,12 +69,12 @@ const ledivstylie = {
     border: 'solid',
     borderWidth: 5,
     borderColor: '#888',
+    paddingBottom:'1.6em'
 }
 
 const categoryStyle = {
     marginTop: '2px',
     paddingTop: 15,
-    paddingBottom: 0,
     marginLeft: '5%',
     width: '90%',
     fontFamily: 'Amaranth',
@@ -98,7 +93,6 @@ const viewpostStyle = {
     whiteSpace: 'pre-line',
     resize: 'none',
     marginLeft: '5%',
-    paddingLeft: '0.3em',
     marginTop: '1%',
     fontSize: '1.2em',
     width: '90%',

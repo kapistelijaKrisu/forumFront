@@ -19,19 +19,17 @@ class CommentForm extends React.Component {
     }
     postComment = async (event) => {
         event.preventDefault()
-        console.log('posting')
-        console.log(this.props.detailedForumpost)
         try {
             await this.props.addComment({
                 content: this.state.content,
                 forumpostid: this.props.forumpost.forumpostid,
                 categoryid: this.props.forumpost.categoryid
             })
-
+            await this.setState({ content: '' })
         } catch (exception) {
             console.log(exception)
         }
-        this.setState({ content: '' })
+        
     }
 
     render() {
@@ -56,7 +54,8 @@ class CommentForm extends React.Component {
 }
 const mapStateToProps = (state) => {
     return {
-        dude: state.dude
+        dude: state.dude,
+        forumpost: state.detailedForumpost
     }
 }
 
