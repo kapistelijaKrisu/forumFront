@@ -33,6 +33,7 @@ class CategoryForm extends Component {
     render() {
         const hideShowButton =
             <button
+            type="button"
                 style={categoryButtonStyle}
                 onClick={this.hideShow}>
                 {this.state.visible ? 'Hide' : 'Open Form'}
