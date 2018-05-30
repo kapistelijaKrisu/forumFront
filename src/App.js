@@ -60,7 +60,6 @@ const CategoryPage = () => {
   return (
     <Route exact path="/category/:categoryid" render={({ match, history }) =>
       <Category categoryid={match.params.categoryid}
-
       />}
     />
   )

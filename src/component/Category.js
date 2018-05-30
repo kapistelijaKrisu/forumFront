@@ -22,6 +22,7 @@ class Category extends Component {
     }
 
     render() {
+        console.log('at category page')
         if (this.props.forumposts === undefined) {
             return <div />
         }
