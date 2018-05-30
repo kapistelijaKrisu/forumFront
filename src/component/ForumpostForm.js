@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { addForumpost } from '../reducers/forumposts'
+import { notify } from '../reducers/notification'
 import autosize from 'autosize'
 
 class ForumpostForm extends Component {
@@ -27,20 +28,20 @@ class ForumpostForm extends Component {
                 content: this.state.content,
                 categoryid: this.props.categoryid
             })
-
+            this.setState({ name: '', description: '' })
+            
+            window.location = `/category/${this.props.categoryid}`
+            this.props.notify('Posted successfully!', 'success',11)
         } catch (exception) {
-            console.log(exception)
+            this.props.notify('Error: Length of content should be between 1-1023 characters and title 2-31 characters')
         }
-        this.setState({ name: '', description: '' })
-        window.location = `/category/${this.props.categoryid}`
+
     }
 
 
 
     render() {
         return (
-
-
             <form
                 onSubmit={this.postForumpost}
                 style={forumpostFormStyle}
@@ -75,7 +76,7 @@ class ForumpostForm extends Component {
 
 export default connect(
     null,
-    { addForumpost }
+    { addForumpost, notify }
 
 )(ForumpostForm)
 

@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { addComment } from '../reducers/detailedForumpost'
+import { notify } from '../reducers/notification'
 import autosize from 'autosize'
 
 class CommentForm extends React.Component {
@@ -26,10 +27,11 @@ class CommentForm extends React.Component {
                 categoryid: this.props.forumpost.categoryid
             })
             await this.setState({ content: '' })
+            this.props.notify('Comment posted successfully!', 'success')
         } catch (exception) {
-            console.log(exception)
+            this.props.notify('Error: Length of post should be between 1-1023 characters')
         }
-        
+
     }
 
     render() {
@@ -61,7 +63,7 @@ const mapStateToProps = (state) => {
 
 export default connect(
     mapStateToProps,
-    { addComment }
+    { addComment, notify }
 
 )(CommentForm)
 

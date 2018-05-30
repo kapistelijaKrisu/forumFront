@@ -1,31 +1,48 @@
-import React from 'react'
+import React, { Component } from 'react'
+import { Redirect } from "react-router-dom"
 
-const ForumpostLink = ({ forumpost }) => {
-    if (forumpost === undefined) {
-        return <div />
+class ForumpostLink extends Component {
+    constructor() {
+        super()
+        this.state = {
+            redirect: false
+        }
     }
-    const redirectLink = (forumpost) => {
-        window.location = `/category/${forumpost.categoryid}/forumpost/${forumpost.forumpostid}`
+
+    redirectLink = () => {
+        this.setState({ redirect: true })
     }
-    return (
-        <div style={forumpostStyle} onClick={() => { redirectLink(forumpost) }}>
 
-            <p>{forumpost.title}</p>
-        </div>
-    )
-}
-export default ForumpostLink
+    render() {
+        if (this.props.forumpost === undefined) {
+            return <div />
+        }
 
+        const path = `/category/${this.props.forumpost.categoryid}/forumpost/${this.props.forumpost.forumpostid}`
+
+        const linkOrRedirect = this.state.redirect ?
+            <Redirect to={path} /> :
+            <div style={forumpostStyle} onClick={() => { this.redirectLink() }}>
+                <p>{this.props.forumpost.title}</p>
+            </div>
+
+        return (
+            <div>{linkOrRedirect}</div>
+         )
+     }
+ }
+ export default ForumpostLink
+ 
 const forumpostStyle = {
-    cursor:'pointer',
-    height: '2em',
-    fontSize: 20,
-    paddingTop: 10,
-    paddingLeft: 2,
-    border: 'solid',
-    borderWidth: 5,
-    borderColor: '#C0C0C0',
-    marginBottom: 5,
-    background: 'linear-gradient(70deg, #e9eb50, #333)'
-    //  background: 'linear-gradient(70deg, #c2f3cd, #999)'
+                    cursor: 'pointer',
+                height: '2em',
+                fontSize: 20,
+                paddingTop: 10,
+                paddingLeft: 2,
+                border: 'solid',
+                borderWidth: 5,
+                borderColor: '#C0C0C0',
+                marginBottom: 5,
+                background: 'linear-gradient(70deg, #e9eb50, #333)'
+                //  background: 'linear-gradient(70deg, #c2f3cd, #999)'
 }

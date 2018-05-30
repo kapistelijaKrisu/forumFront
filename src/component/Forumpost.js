@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { addComment, getDetailedForumPost } from '../reducers/detailedForumpost'
+import { getDetailedForumPost } from '../reducers/detailedForumpost'
 import Comment from './Comment'
 import CommentForm from './CommentForm'
 import autosize from 'autosize'
@@ -61,7 +61,7 @@ const mapStateToProps = (state) => {
 }
 export default connect(
     mapStateToProps,
-    { addComment, getDetailedForumPost }
+    { getDetailedForumPost }
 
 )(Forumpost)
 

@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { addCategory } from '../reducers/category'
+import { notify } from '../reducers/notification'
 
 class CategoryForm extends Component {
     constructor() {
@@ -23,9 +24,9 @@ class CategoryForm extends Component {
         event.preventDefault()
         try {
             await this.props.addCategory({ name: this.state.name, description: this.state.description })
-
+            this.props.notify('Category has been added!', 'success')
         } catch (exception) {
-            console.log(exception)
+            this.props.notify('Error: Category with same name already exists or length of name and description between 2-31 characters')
         }
         this.setState({ name: '', description: '' })
     }
@@ -74,7 +75,7 @@ class CategoryForm extends Component {
 }
 export default connect(
     null,
-    { addCategory }
+    { addCategory, notify }
 
 )(CategoryForm)
 

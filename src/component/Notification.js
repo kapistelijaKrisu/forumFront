@@ -9,7 +9,7 @@ const Notification = props => {
   const footerStyle = {
     padding: '10px',
     textAlign: 'center',
-    fontSize: '1.1rem',
+    fontSize: '1.8rem',
     position: 'fixed',
     bottom: 0,
     left: 0,
@@ -20,7 +20,7 @@ const Notification = props => {
   if (props.notification.textType === 'error') {
     const errorStyle = {
       color: '#F44336',
-      backgroundColor: '#FFEBEE',
+      backgroundColor: '#000000',
       borderTop: '2px solid #F44336'
     }
     return (
@@ -33,7 +33,7 @@ const Notification = props => {
 
   const successStyle = {
     color: '#4CAF50',
-    backgroundColor: '#E8F5E9',
+    backgroundColor: '#000000',
     borderTop: '2px solid #4CAF50'
   }
   return (

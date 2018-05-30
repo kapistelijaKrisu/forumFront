@@ -1,23 +1,36 @@
-import React from 'react'
+import React, { Component } from 'react'
+import { Redirect } from "react-router-dom"
 
-const CategoryLink = ({ category }) => {
-    if (category === undefined) {
-        return <div />
+class CategoryLink extends Component {
+    constructor() {
+        super()
+        this.state = {
+            redirect: false
+        }
+    }
+    redirectLink = () => {
+        this.setState({ redirect: true })
     }
 
-    const redirectLink = () => {
-        window.location = `/category/${category.categoryid}`
+    render() {
+        if (this.props.category === undefined) {
+            return <div />
+        }
+
+        
+        const path = '/category/' + this.props.category.categoryid
+
+        const linkOrRedirect = this.state.redirect ?
+            <Redirect to={path} /> :
+            <div style={categoryStyle} onClick={() => { this.redirectLink() }}>
+                <p syle={{ fontSize: '1.1em' }}>{this.props.category.name}</p>
+                <p style={{ fontSize: '0.9em' }}>{this.props.category.description}</p>
+            </div>
+        return (
+            <div>{linkOrRedirect}</div>
+        )
     }
-
-    return (
-        <div style={categoryStyle} onClick={() => { redirectLink() }}>
-
-            <p syle={{ fontSize: '1.1em' }}>{category.name}</p>
-            <p style={{ fontSize: '0.9em' }}>{category.description}</p>
-        </div>
-    )
 }
-
 export default CategoryLink
 
 const categoryStyle = {

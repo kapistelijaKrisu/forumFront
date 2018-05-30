@@ -4,7 +4,7 @@ git commit -m "'$1'"
 git push origin master
 
 npm run build
-cp -r build ../FullstackForum/
+cp -r build ../FullstackForum/client/
 
 cd ../FullstackForum
 git add .
