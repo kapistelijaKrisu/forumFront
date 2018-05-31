@@ -17,17 +17,16 @@ class CategoryLink extends Component {
             return <div />
         }
 
-        
-        const path = '/category/' + this.props.category.categoryid
 
-        const linkOrRedirect = this.state.redirect ?
-            <Redirect to={path} /> :
-            <div style={categoryStyle} onClick={() => { this.redirectLink() }}>
-                <p syle={{ fontSize: '1.1em' }}>{this.props.category.name}</p>
-                <p style={{ fontSize: '0.9em' }}>{this.props.category.description}</p>
-            </div>
+        const path = '/category/' + this.props.category.categoryid
         return (
-            <div>{linkOrRedirect}</div>
+            <div>{ this.state.redirect ?
+            <Redirect to={path} />
+                :
+            <div style={categoryStyle} onClick={() => { this.redirectLink() }}>
+                    <p syle={{ fontSize: '1.1em' }}>{this.props.category.name}</p>
+                    <p style={{ fontSize: '0.9em' }}>{this.props.category.description}</p>
+            </div>}</div>
         )
     }
 }

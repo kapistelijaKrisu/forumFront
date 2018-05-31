@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { Redirect } from "react-router-dom"
 import { getDetailedForumPost } from '../reducers/detailedForumpost'
 import Comment from './Comment'
 import CommentForm from './CommentForm'
@@ -10,6 +11,7 @@ class Forumpost extends Component {
     constructor(props) {
         super(props)
         this.state = {
+            redirect: false
         }
     }
     componentDidMount() {
@@ -22,21 +24,26 @@ class Forumpost extends Component {
         }
     }
 
-    linkToCategory = (categoryid) => {
-        window.location = `/category/${categoryid}`
+    linkToCategory = () => {
+        this.setState({ redirect: true })
+        //   window.location = `/category/${categoryid}`
     }
 
     render() {
+        const redirectLink = `/category/${this.props.detailedForumpost.categoryid}`
         return (
             <div style={{
                 margin: 'auto',
                 background: 'linear-gradient(70deg, #111, #444)'
             }}>
-                <p
-                    style={categoryStyle}
-                    onClick={() => { this.linkToCategory(this.props.detailedForumpost.categoryid) }}
-                >Back to {this.props.detailedForumpost.categoryname}
-                </p>
+                {this.state.redirect ?
+                    <Redirect to={redirectLink} />
+                    :
+                    <p
+                        style={categoryStyle}
+                        onClick={() => { this.linkToCategory() }}
+                    >Back to {this.props.detailedForumpost.categoryname}
+                    </p>}
                 <div style={ledivstylie}>
                     <br />
                     {this.props.detailedForumpost.comments.map(comment =>
@@ -69,7 +76,7 @@ const ledivstylie = {
     border: 'solid',
     borderWidth: 5,
     borderColor: '#888',
-    paddingBottom:'1.6em'
+    paddingBottom: '1.6em'
 }
 
 const categoryStyle = {

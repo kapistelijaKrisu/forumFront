@@ -1,14 +1,21 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { logout } from '../reducers/dude'
+import { notify } from '../reducers/notification'
 
 const LogoutButton = (props) => (
-  <button style={buttonStyle} onClick={props.logout} name="logout">logout</button>
+  <button style={buttonStyle}
+    onClick={() => { logoutAndNotify(props.logout, props.notify) }}
+    name="logout">logout</button>
 )
+const logoutAndNotify = (logout, notify) => {
+  logout()
+  notify('You have logged out', 'success')
+}
 
 export default connect(
   null,
-  { logout }
+  { logout, notify }
 
 )(LogoutButton)
 

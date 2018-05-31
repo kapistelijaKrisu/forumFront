@@ -13,7 +13,6 @@ class DudeOverView extends Component {
 
     componentWillMount = async () => {
         await this.props.getForumpostsByDude(this.props.dudeid)
-        console.log(this.props)
     }
     render() {
         return (

@@ -3,13 +3,15 @@ import { connect } from 'react-redux'
 import { addForumpost } from '../reducers/forumposts'
 import { notify } from '../reducers/notification'
 import autosize from 'autosize'
+import { Redirect } from "react-router-dom"
 
 class ForumpostForm extends Component {
     constructor() {
         super()
         this.state = {
             title: '',
-            content: ''
+            content: '',
+            redirect: false
         }
     }
 
@@ -29,9 +31,9 @@ class ForumpostForm extends Component {
                 categoryid: this.props.categoryid
             })
             this.setState({ name: '', description: '' })
-            
-            window.location = `/category/${this.props.categoryid}`
-            this.props.notify('Posted successfully!', 'success',11)
+
+            this.setState({ redirect: true })
+            this.props.notify('Posted successfully!', 'success', 11)
         } catch (exception) {
             this.props.notify('Error: Length of content should be between 1-1023 characters and title 2-31 characters')
         }
@@ -41,35 +43,40 @@ class ForumpostForm extends Component {
 
 
     render() {
+        const path = `/category/${this.props.categoryid}`
         return (
-            <form
-                onSubmit={this.postForumpost}
-                style={forumpostFormStyle}
-            >
-                <p style={{ paddingTop: '1em' }}>Title</p>
+            <div>{
+                this.state.redirect ?
+                    <Redirect to={path} />
+                    :
+                    <form
+                        onSubmit={this.postForumpost}
+                        style={forumpostFormStyle}
+                    >
+                        <p style={{ paddingTop: '1em' }}>Title</p>
 
-                <input
-                    style={forumpostTextStyle}
-                    type="text"
-                    name="title"
-                    value={this.state.title}
-                    onChange={this.handleLoginFieldChange}
-                />
-                <p style={{ paddingTop: '1em' }}>Content</p>
-                <textarea
-                    style={forumpostTextAreaStyle}
-                    ref={c => (this.textarea = c)}
-                    rows={15}
-                    type="text"
-                    name="content"
-                    value={this.state.content}
-                    onChange={this.handleLoginFieldChange}
-                />
-                <br />
-                <button
-                    type="submit"
-                    style={forumpostButtonStyle}>Post!</button>
-            </form>
+                        <input
+                            style={forumpostTextStyle}
+                            type="text"
+                            name="title"
+                            value={this.state.title}
+                            onChange={this.handleLoginFieldChange}
+                        />
+                        <p style={{ paddingTop: '1em' }}>Content</p>
+                        <textarea
+                            style={forumpostTextAreaStyle}
+                            ref={c => (this.textarea = c)}
+                            rows={15}
+                            type="text"
+                            name="content"
+                            value={this.state.content}
+                            onChange={this.handleLoginFieldChange}
+                        />
+                        <br />
+                        <button
+                            type="submit"
+                            style={forumpostButtonStyle}>Post!</button>
+                    </form>}</div>
         )
     }
 }
