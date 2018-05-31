@@ -36,6 +36,7 @@ class App extends Component {
             <CategoryPage />
             <ForumpostPage />
             <ForumpostFormPage />
+            <NotFoundPage />
           </div>
         </Router>
 
@@ -78,6 +79,26 @@ const ForumpostFormPage = () => {
     <Route exact path="/category/:categoryid/post" render={({ match, history }) =>
       <ForumpostForm categoryid={match.params.categoryid}
       />}
+    />
+  )
+}
+const NotFoundPage = () => {
+  const errorPageStyle = {
+    marginTop:'15%',
+    textAlign:'center',
+    fontFamily: 'Amaranth',
+    fontWeight: 'bold',
+    fontSize: '4em',
+    color: '#666666'
+  }
+  return (
+    <Route exact path="*" render={({ match, history }) =>
+      <div style={errorPageStyle}>
+        <p>This is not the page you are looking for!</p>
+        <p>404</p>
+        <p>Page not found</p>
+          </div>
+    }
     />
   )
 }

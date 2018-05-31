@@ -8,10 +8,17 @@ const categoryReducer = (store = [], action) => {
         case GET_CATEGORIES:
             return action.categories
         case ADD_CATEGORY:
-            return store.concat(action.category)
+            let newStore = store.concat(action.category)
+            newStore.sort(sortByName)
+               
+            return newStore
         default:
             return store
     }
+}
+
+const sortByName = (category1, category2) => {
+   return category1.name.toLowerCase() > category2.name.toLowerCase()
 }
 
 export const getCategories = () => {

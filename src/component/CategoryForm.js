@@ -83,7 +83,6 @@ const categoryTextStyle = {
     margin: '10px',
     minHeight: '0.7em',
     width: '70%',
-    fontStyle: 'bold',
     fontFamily: 'Amaranth',
     fontWeight: 'bold',
     fontSize: '1.2em',
