@@ -31,7 +31,6 @@ class App extends Component {
         <Router>
           <div>
             <TopBar />
-            <Switch>
               <Route exact path="/" render={() => <Home />}
               />
               <Route exact path="/dude/:dudeid" render={({ match, history }) =>
@@ -51,8 +50,7 @@ class App extends Component {
                 />}
               />
 
-              <Route path="/*" component={NoMatch} />
-            </Switch>
+       
           </div>
         </Router>
 
