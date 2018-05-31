@@ -9,12 +9,12 @@ const getDetailedForumpost = async (forumpostid)=> {
 }
 
 const getForumpostsByCategory = async (categoryid) => {
-  const response = await axios.get(baseUrl + '/category/' + categoryid)
+  const response = await axios.get(baseUrl + 'category/' + categoryid)
   return response.data
 }
 
 const getForumpostsByDude = async (dudeid) => {
-  const response = await axios.get(baseUrl + '/dude/' + dudeid)
+  const response = await axios.get(baseUrl + 'dude/' + dudeid)
   return response.data
 }
 
