@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { BrowserRouter as Router, Route } from 'react-router-dom'
+import { BrowserRouter as Router, Link, Route, Switch } from 'react-router-dom'
 
 import TopBar from './component/TopBar'
 import Category from './component/Category'
@@ -31,12 +31,28 @@ class App extends Component {
         <Router>
           <div>
             <TopBar />
-            <HomePage />
-            <PersonalPage />
-            <CategoryPage />
-            <ForumpostPage />
-            <ForumpostFormPage />
-            <NotFoundPage />
+            <Switch>
+              <Route exact path="/" render={() => <Home />}
+              />
+              <Route exact path="/dude/:dudeid" render={({ match, history }) =>
+                <DudeOverView dudeid={match.params.dudeid}
+                />}
+              />
+              <Route exact path="/category/:categoryid" render={({ match, history }) =>
+                <Category categoryid={match.params.categoryid}
+                />}
+              />
+              <Route exact path="/category/:categoryid/forumpost/:forumpostid" render={({ match, history }) =>
+                <Forumpost forumpostid={match.params.forumpostid}
+                />}
+              />
+              <Route exact path="/category/:categoryid/post" render={({ match, history }) =>
+                <ForumpostForm categoryid={match.params.categoryid}
+                />}
+              />
+
+              <Route path="/*" component={NoMatch} />
+            </Switch>
           </div>
         </Router>
 
@@ -46,60 +62,21 @@ class App extends Component {
   }
 }
 
-const HomePage = () => (
-  <Route exact path="/" render={() =>
-    <Home />}
-  />
-)
-const PersonalPage = () => (
-  <Route exact path="/dude/:dudeid" render={({ match, history }) =>
-      <DudeOverView dudeid={match.params.dudeid}
-      />}
-    />
-)
-const CategoryPage = () => {
-  return (
-    <Route exact path="/category/:categoryid" render={({ match, history }) =>
-      <Category categoryid={match.params.categoryid}
-      />}
-    />
-  )
-}
-const ForumpostPage = () => {
-  return (
-    <Route exact path="/category/:categoryid/forumpost/:forumpostid" render={({ match, history }) =>
-      <Forumpost forumpostid={match.params.forumpostid}
-      />}
-    />
-  )
-}
-
-const ForumpostFormPage = () => {
-  return (
-    <Route exact path="/category/:categoryid/post" render={({ match, history }) =>
-      <ForumpostForm categoryid={match.params.categoryid}
-      />}
-    />
-  )
-}
-const NotFoundPage = () => {
+const NoMatch = () => {
   const errorPageStyle = {
-    marginTop:'15%',
-    textAlign:'center',
+    marginTop: '10%',
+    textAlign: 'center',
     fontFamily: 'Amaranth',
     fontWeight: 'bold',
     fontSize: '4em',
     color: '#666666'
   }
   return (
-    <Route exact path="*" render={({ match, history }) =>
-      <div style={errorPageStyle}>
-        <p>This is not the page you are looking for!</p>
-        <p>404</p>
-        <p>Page not found</p>
-          </div>
-    }
-    />
+    <div style={errorPageStyle}>
+      <p>This is not the page you are looking for!</p>
+      <p>404</p>
+      <p>Page not found</p>
+    </div>
   )
 }
 
