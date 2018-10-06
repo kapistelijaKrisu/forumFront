@@ -1,15 +1,22 @@
 #!/bin/sh
-git add .
-git commit -m "'$1'"
-git push origin master
 
-npm run build
-cp -r build ../FullstackForum/client/
+if [ -z "$1" ]
+then
+    echo "No commit message provided, build canceled"
+else
 
-cd ../FullstackForum
-git add .
-git commit -m "'$1'"
-git push origin master
-git push heroku master
+    git add .
+    git commit -m "'$1'"
+    git push origin master
 
-cd ../forumFront
+    npm run build
+    cp -r build ../FullstackForum/client/
+
+    cd ../FullstackForum
+    git add .
+    git commit -m "'$1'"
+    git push origin master
+    git push heroku master
+
+    cd ../forumFront
+fi
