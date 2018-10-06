@@ -18,7 +18,7 @@ class CategoryLink extends Component {
         }
 
 
-        const path = '/category/' + this.props.category.categoryid
+        const path = '/category/' + this.props.category.category_id
         return (
             <div>{ this.state.redirect ?
             <Redirect to={path} />

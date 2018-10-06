@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { login, register } from '../reducers/dude'
-import { notify } from '../reducers/notification'
+import { login, register } from '../../reducers/dude'
+import { notify } from '../../reducers/notification'
 
 class LoginForm extends React.Component {
   constructor(props) {

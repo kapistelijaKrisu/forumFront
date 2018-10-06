@@ -9,7 +9,7 @@ const TopBar = ({ dude }) => {
   const loginOrLogout = dude === null ? <LoginForm />
     : <div style={menuStyle}>
       <Link style={topLinkStyle}  to="/" >Home</Link> &nbsp;
-      <Link style={topLinkStyle}  to={'/dude/'+dude.dudeid} >Your posts</Link> &nbsp;
+      <Link style={topLinkStyle}  to={'/dude/'+dude.dude_id} >Your posts</Link> &nbsp;
       <LogoutButton />
     </div>
   return (

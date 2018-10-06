@@ -16,9 +16,9 @@ const commentsReducer = (store = { comments: [] }, action) => {
     }
 }
 
-export const getDetailedForumPost = (forumpostid) => {
+export const getDetailedForumPost = (forumpost_id) => {
     return async (dispatch) => {
-        const forumpost = await forumpostservice.getDetailedForumpost(forumpostid)
+        const forumpost = await forumpostservice.getDetailedForumpost(forumpost_id)
         dispatch({
             type: GET_FORUMPOST,
             forumpost

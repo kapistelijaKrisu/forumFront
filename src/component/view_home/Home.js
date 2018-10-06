@@ -9,7 +9,7 @@ const Home = ({ categories, dude }) => {
         <div>
             {form}
             {categories.map(category =>
-                <CategoryLink key={category.categoryid} category={category} />
+                <CategoryLink key={category.category_id} category={category} />
             )}
         </div>
     )

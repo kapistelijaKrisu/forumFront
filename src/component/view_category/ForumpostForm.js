@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { addForumpost } from '../reducers/forumposts'
-import { notify } from '../reducers/notification'
+import { addForumpost } from '../../reducers/forumposts'
+import { notify } from '../../reducers/notification'
 import autosize from 'autosize'
 import { Redirect } from "react-router-dom"
 
@@ -28,7 +28,7 @@ class ForumpostForm extends Component {
             await this.props.addForumpost({
                 title: this.state.title,
                 content: this.state.content,
-                categoryid: this.props.categoryid
+                category_id: this.props.category_id
             })
             this.setState({ name: '', description: '' })
 
@@ -43,7 +43,7 @@ class ForumpostForm extends Component {
 
 
     render() {
-        const path = `/category/${this.props.categoryid}`
+        const path = `/category/${this.props.category_id}`
         return (
             <div>{
                 this.state.redirect ?

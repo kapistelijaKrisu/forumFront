@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { addComment } from '../reducers/detailedForumpost'
-import { notify } from '../reducers/notification'
+import { addComment } from '../../reducers/detailedForumpost'
+import { notify } from '../../reducers/notification'
 import autosize from 'autosize'
 
 class CommentForm extends React.Component {
@@ -11,7 +11,7 @@ class CommentForm extends React.Component {
             content: ''
         }
     }
-    componentDidMount() {
+    componentD_idMount() {
         autosize(this.textarea);
     }
 
@@ -23,8 +23,8 @@ class CommentForm extends React.Component {
         try {
             await this.props.addComment({
                 content: this.state.content,
-                forumpostid: this.props.forumpost.forumpostid,
-                categoryid: this.props.forumpost.categoryid
+                forumpost_id: this.props.forumpost.forumpost_id,
+                category_id: this.props.forumpost.category_id
             })
             await this.setState({ content: '' })
             this.props.notify('Comment posted successfully!', 'success')

@@ -2,14 +2,14 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 
-import TopBar from './component/TopBar'
-import Category from './component/Category'
-import Forumpost from './component/Forumpost'
-import NotificationFooter from './component/NotificationFooter'
-import Home from './component/Home'
+import TopBar from './component/common/TopBar'
+import Category from './component/view_category/Category'
+import Forumpost from './component/view_forumpost/Forumpost'
+import NotificationFooter from './component/common/NotificationFooter'
+import Home from './component/view_home/Home'
 import { getCategories } from './reducers/category'
-import DudeOverView from './component/DudeOverView';
-import ForumpostForm from './component/ForumpostForm';
+import DudeOverView from './component/view_account/DudeOverView';
+import ForumpostForm from './component/view_category/ForumpostForm';
 
 
 class App extends Component {
@@ -34,20 +34,20 @@ class App extends Component {
             <Switch>
               <Route exact path="/" render={() => <Home />}
               />
-              <Route exact path="/dude/:dudeid" render={({ match, history }) =>
-                <DudeOverView dudeid={match.params.dudeid}
+              <Route exact path="/dude/:dude_id" render={({ match, history }) =>
+                <DudeOverView dude_id={match.params.dude_id}
                 />}
               />
-              <Route exact path="/category/:categoryid" render={({ match, history }) =>
-                <Category categoryid={match.params.categoryid}
+              <Route exact path="/category/:category_id" render={({ match, history }) =>
+                <Category category_id={match.params.category_id}
                 />}
               />
-              <Route exact path="/category/:categoryid/forumpost/:forumpostid" render={({ match, history }) =>
-                <Forumpost forumpostid={match.params.forumpostid}
+              <Route exact path="/category/:category_id/forumpost/:forumpost_id" render={({ match, history }) =>
+                <Forumpost forumpost_id={match.params.forumpost_id}
                 />}
               />
-              <Route exact path="/category/:categoryid/post" render={({ match, history }) =>
-                <ForumpostForm categoryid={match.params.categoryid}
+              <Route exact path="/category/:category_id/post" render={({ match, history }) =>
+                <ForumpostForm category_id={match.params.category_id}
                 />}
               />
 

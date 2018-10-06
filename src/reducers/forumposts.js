@@ -14,9 +14,9 @@ const forumpostReducer = (store = [], action) => {
     }
 }
 
-export const getForumpostsByCategory = (categoryid) => {
+export const getForumpostsByCategory = (category_id) => {
     return async (dispatch) => {
-        const forumposts = await forumposterivce.getForumpostsByCategory(categoryid)
+        const forumposts = await forumposterivce.getForumpostsByCategory(category_id)
         dispatch({
             type: GET_FORUMPOSTS,
             forumposts
@@ -24,9 +24,9 @@ export const getForumpostsByCategory = (categoryid) => {
     }
 }
 
-export const getForumpostsByDude = (dudeid) => {
+export const getForumpostsByDude = (dude_id) => {
     return async (dispatch) => {
-        const forumposts = await forumposterivce.getForumpostsByDude(dudeid)
+        const forumposts = await forumposterivce.getForumpostsByDude(dude_id)
         dispatch({
             type: GET_FORUMPOSTS,
             forumposts

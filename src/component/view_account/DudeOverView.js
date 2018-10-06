@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import ForumpostLink from './ForumpostLink'
-import { getForumpostsByDude } from '../reducers/forumposts'
+import ForumpostLink from '../view_category/ForumpostLink'
+import { getForumpostsByDude } from '../../reducers/forumposts'
 
 class DudeOverView extends Component {
 
@@ -12,14 +12,14 @@ class DudeOverView extends Component {
     }
 
     componentWillMount = async () => {
-        await this.props.getForumpostsByDude(this.props.dudeid)
+        await this.props.getForumpostsByDude(this.props.dude_id)
     }
     render() {
         return (
             <div>
                 <ul>
                     {this.props.forumposts.map(post =>
-                        <ForumpostLink key={post.forumpostid} forumpost={post} />
+                        <ForumpostLink key={post.forumpost_id} forumpost={post} />
                     )}
                 </ul>
             </div>

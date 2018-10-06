@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { logout } from '../reducers/dude'
-import { notify } from '../reducers/notification'
+import { logout } from '../../reducers/dude'
+import { notify } from '../../reducers/notification'
 
 const LogoutButton = (props) => (
   <button style={buttonStyle}

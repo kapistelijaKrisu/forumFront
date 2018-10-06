@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { getForumpostsByCategory } from '../reducers/forumposts'
+import { getForumpostsByCategory } from '../../reducers/forumposts'
 import ForumpostLink from './ForumpostLink'
 
 class Category extends Component {
@@ -12,32 +12,31 @@ class Category extends Component {
     }
 
     componentWillMount = async () => {
-        if (this.props.categoryid !== undefined) {
-            await this.props.getForumpostsByCategory(this.props.categoryid)
+        if (this.props.category_id !== undefined) {
+            await this.props.getForumpostsByCategory(this.props.category_id)
         }
     }
 
-    redirectLink = (categoryid) => {
-        window.location = `/category/${categoryid}/post`
+    redirectLink = (category_id) => {
+        window.location = `/category/${category_id}/post`
     }
 
     render() {
         if (this.props.forumposts === undefined) {
             return <div />
         }
-
         return (
             <div>
                 <ul>
                     {this.props.forumposts.map(post =>
-                        <ForumpostLink key={post.forumpostid} forumpost={post} />
+                        <ForumpostLink key={post.forumpost_id} forumpost={post} />
                     )}
                 </ul>
                 {this.props.dude === null ? <p>login to post</p>
                     : <div style={{ textAlign: 'center' }}>
                         <button
                             style={forumpostButtonStyle}
-                            onClick={() => { this.redirectLink(this.props.categoryid) }}
+                            onClick={() => { this.redirectLink(this.props.category_id) }}
                         >Create a Post
                     </button>
                     </div>}

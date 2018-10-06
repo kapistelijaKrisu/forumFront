@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Redirect } from "react-router-dom"
-import { getDetailedForumPost } from '../reducers/detailedForumpost'
+import { getDetailedForumPost } from '../../reducers/detailedForumpost'
 import Comment from './Comment'
 import CommentForm from './CommentForm'
 import autosize from 'autosize'
@@ -18,19 +18,19 @@ class Forumpost extends Component {
         autosize(this.textarea);
     }
     componentWillMount = async () => {
-        if (this.props.forumpostid !== undefined) {
-            await this.props.getDetailedForumPost(this.props.forumpostid)
+        if (this.props.forumpost_id !== undefined) {
+            await this.props.getDetailedForumPost(this.props.forumpost_id)
             autosize(this.textarea);
         }
     }
 
     linkToCategory = () => {
         this.setState({ redirect: true })
-        //   window.location = `/category/${categoryid}`
+        //   window.location = `/category/${category_id}`
     }
 
     render() {
-        const redirectLink = `/category/${this.props.detailedForumpost.categoryid}`
+        const redirectLink = `/category/${this.props.detailedForumpost.category_id}`
         return (
             <div style={{
                 margin: 'auto',
@@ -47,7 +47,7 @@ class Forumpost extends Component {
                 <div style={ledivstylie}>
                     <br />
                     {this.props.detailedForumpost.comments.map(comment =>
-                        <Comment key={comment.commentid}
+                        <Comment key={comment.comment_id}
                             comment={comment}
                             style={viewpostStyle} />
                     )}

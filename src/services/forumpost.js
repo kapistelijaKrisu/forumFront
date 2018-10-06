@@ -3,18 +3,18 @@ import dudeservice from "./dude";
 
 const baseUrl = '/api/forumpost/'
 
-const getDetailedForumpost = async (forumpostid)=> {
-  const response = await axios.get(baseUrl + forumpostid)
+const getDetailedForumpost = async (forumpost_id)=> {
+  const response = await axios.get(baseUrl + forumpost_id)
   return response.data
 }
 
-const getForumpostsByCategory = async (categoryid) => {
-  const response = await axios.get(baseUrl + 'category/' + categoryid)
+const getForumpostsByCategory = async (category_id) => {
+  const response = await axios.get(baseUrl + 'category/' + category_id)
   return response.data
 }
 
-const getForumpostsByDude = async (dudeid) => {
-  const response = await axios.get(baseUrl + 'dude/' + dudeid)
+const getForumpostsByDude = async (dude_id) => {
+  const response = await axios.get(baseUrl + 'dude/' + dude_id)
   return response.data
 }
 

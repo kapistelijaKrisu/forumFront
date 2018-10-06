@@ -18,7 +18,7 @@ class ForumpostLink extends Component {
             return <div />
         }
 
-        const path = `/category/${this.props.forumpost.categoryid}/forumpost/${this.props.forumpost.forumpostid}`
+        const path = `/category/${this.props.forumpost.category_id}/forumpost/${this.props.forumpost.forumpost_id}`
 
         const linkOrRedirect = this.state.redirect ?
             <Redirect to={path} /> :
@@ -28,21 +28,21 @@ class ForumpostLink extends Component {
 
         return (
             <div>{linkOrRedirect}</div>
-         )
-     }
- }
- export default ForumpostLink
- 
+        )
+    }
+}
+export default ForumpostLink
+
 const forumpostStyle = {
-                    cursor: 'pointer',
-                height: '2em',
-                fontSize: 20,
-                paddingTop: 10,
-                paddingLeft: 2,
-                border: 'solid',
-                borderWidth: 5,
-                borderColor: '#C0C0C0',
-                marginBottom: 5,
-                background: 'linear-gradient(70deg, #e9eb50, #333)'
-                //  background: 'linear-gradient(70deg, #c2f3cd, #999)'
+    cursor: 'pointer',
+    height: '2em',
+    fontSize: 20,
+    paddingTop: 10,
+    paddingLeft: 2,
+    border: 'solid',
+    borderWidth: 5,
+    borderColor: '#C0C0C0',
+    marginBottom: 5,
+    background: 'linear-gradient(70deg, #e9eb50, #333)'
+    //  background: 'linear-gradient(70deg, #c2f3cd, #999)'
 }
