@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Redirect } from "react-router-dom"
+import { Redirect } from 'react-router-dom'
 import { getDetailedForumPost } from '../reducers/detailedForumpost'
 import Comment from './Comment'
 import CommentForm from './CommentForm'
@@ -26,7 +26,6 @@ class Forumpost extends Component {
 
     linkToCategory = () => {
         this.setState({ redirect: true })
-        //   window.location = `/category/${category_id}`
     }
 
     render() {

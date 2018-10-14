@@ -21,8 +21,9 @@ class LoginForm extends React.Component {
         await this.props.login(this.state.username, this.state.password)
         this.props.notify('Welcome back!', 'success')
       } catch (exception) {
-        this.props.notify('username or password invalid')
-      }
+        console.log(exception)
+        this.props.notify('username or password invalid', )
+      }//
     } else {
       try {
         await this.props.register(this.state.username, this.state.password)
