@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
-
-import TopBar from './component/common/TopBar'
+import { Router, Route, Switch } from 'react-router-dom'
+import history from './services/history';
+import TopBar from './component/topBar/TopBar'
 import Category from './component/view_category/Category'
 import Forumpost from './component/view_forumpost/Forumpost'
 import NotificationFooter from './component/common/NotificationFooter'
@@ -28,11 +28,11 @@ class App extends Component {
 
     return (
       <div>
-        <Router>
+        <Router history={history}>
           <div>
             <TopBar />
             <Switch>
-              <Route exact path="/" render={() => <Home />}
+              <Route exact={true} path="/" component={Home}
               />
               <Route exact path="/dude/:dude_id" render={({ match, history }) =>
                 <DudeOverView dude_id={match.params.dude_id}

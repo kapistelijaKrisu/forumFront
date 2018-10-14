@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import ForumpostLink from '../view_category/ForumpostLink'
+import {LinkUi, forumpostStyleId} from '../common/LinkUi'
 import { getForumpostsByDude } from '../../reducers/forumposts'
 
 class DudeOverView extends Component {
@@ -19,7 +19,12 @@ class DudeOverView extends Component {
             <div>
                 <ul>
                     {this.props.forumposts.map(post =>
-                        <ForumpostLink key={post.forumpost_id} forumpost={post} />
+                        <LinkUi key={post.forumpost_id} 
+                        data={post}
+                        path={`/category/${post.category_id}/forumpost/${post.forumpost_id}`}
+                        styleId={forumpostStyleId}
+                        title={post.title}
+                        />
                     )}
                 </ul>
             </div>

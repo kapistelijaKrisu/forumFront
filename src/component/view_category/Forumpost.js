@@ -42,7 +42,7 @@ class Forumpost extends Component {
                     <p
                         style={categoryStyle}
                         onClick={() => { this.linkToCategory() }}
-                    >Back to {this.props.detailedForumpost.categoryname}
+                    > > {this.props.detailedForumpost.categoryname}
                     </p>}
                 <div style={ledivstylie}>
                     <br />

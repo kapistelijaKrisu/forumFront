@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { getForumpostsByCategory } from '../../reducers/forumposts'
-import ForumpostLink from './ForumpostLink'
+import {LinkUi, forumpostStyleId} from '../common/LinkUi'
 
 class Category extends Component {
 
@@ -29,7 +29,12 @@ class Category extends Component {
             <div>
                 <ul>
                     {this.props.forumposts.map(post =>
-                        <ForumpostLink key={post.forumpost_id} forumpost={post} />
+                        <LinkUi key={post.forumpost_id} 
+                        data={post}
+                        path={`/category/${post.category_id}/forumpost/${post.forumpost_id}`}
+                        styleId={forumpostStyleId}
+                        title={post.title}
+                        />
                     )}
                 </ul>
                 {this.props.dude === null ? <p>login to post</p>
