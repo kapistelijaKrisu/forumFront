@@ -25,9 +25,7 @@ class CategoryForm extends Component {
         try {
             await this.props.addCategory({ name: this.state.name, description: this.state.description })
             this.props.notify('Category has been added!', 'success')
-        } catch (exception) {
-            this.props.notify('Error: Category with same name already exists or length of name and description between 2-31 characters')
-        }
+        } catch (exception) { }
         this.setState({ name: '', description: '' })
     }
 

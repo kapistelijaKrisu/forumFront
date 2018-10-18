@@ -28,9 +28,7 @@ class CommentForm extends React.Component {
             })
             await this.setState({ content: '' })
             this.props.notify('Comment posted successfully!', 'success')
-        } catch (exception) {
-            this.props.notify('Error: Length of post should be between 1-1023 characters')
-        }
+        } catch (exception) { }
 
     }
 

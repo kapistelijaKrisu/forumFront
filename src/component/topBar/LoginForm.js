@@ -20,17 +20,12 @@ class LoginForm extends React.Component {
       try {
         await this.props.login(this.state.username, this.state.password)
         this.props.notify('Welcome back!', 'success')
-      } catch (exception) {
-        console.log(exception)
-        this.props.notify('username or password invalid', )
-      }//
+      } catch (exception) { }
     } else {
       try {
         await this.props.register(this.state.username, this.state.password)
         this.props.notify('Welcome!', 'success')
-      } catch (exception) {
-        this.props.notify('username has to be minimum 3-31 characters long. password has to be 3-31 characters long')
-      }
+      } catch (exception) { }
     }
   }
 
