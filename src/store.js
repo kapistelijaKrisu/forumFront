@@ -5,6 +5,7 @@ import categoryReducer from'./reducers/category'
 import forumpostReducer from'./reducers/forumposts'
 import detailedForumpostReducer from'./reducers/detailedForumpost'
 import notificationReducer from'./reducers/notification'
+import interceptor from './services/interceptor'
 
 const reducer = combineReducers({
     dude: dudeReducer,
@@ -16,7 +17,8 @@ const reducer = combineReducers({
 
 const store = createStore(
     reducer,
-    applyMiddleware(thunk)
+    applyMiddleware(interceptor, thunk)
+    
 )
 
 export default store

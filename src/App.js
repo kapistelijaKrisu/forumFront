@@ -11,7 +11,6 @@ import { getCategories } from './reducers/category'
 import DudeOverView from './component/view_account/DudeOverView';
 import ForumpostForm from './component/view_category/ForumpostForm';
 
-
 class App extends Component {
 
   constructor() {

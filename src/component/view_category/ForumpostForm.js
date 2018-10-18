@@ -35,7 +35,8 @@ class ForumpostForm extends Component {
             this.setState({ redirect: true })
             this.props.notify('Posted successfully!', 'success', 11)
         } catch (exception) {
-            this.props.notify('Error: Length of content should be between 1-1023 characters and title 2-31 characters')
+            console.log(exception.response)
+           // this.props.notify('Error: Length of content should be between 1-1023 characters and title 2-31 characters')
         }
 
     }
