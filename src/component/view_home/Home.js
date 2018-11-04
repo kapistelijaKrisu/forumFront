@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import CategoryForm from './CategoryForm'
-import {LinkUi, categoryStyleId } from '../common/LinkUi'
+import CategoryLinkUi from './CategoryLinkUi'
 
 const Home = ({ categories, dude }) => {
     const form = dude && dude.isMod ? <CategoryForm /> : <div />
@@ -9,12 +9,8 @@ const Home = ({ categories, dude }) => {
         <div>
             {form}
             {categories.map(category =>
-                <LinkUi key={category.category_id}
-                    data={category}
-                    path={'/category/' + category.category_id}
-                    title={category.name}
-                    text={category.description}
-                    styleId={categoryStyleId} />
+                <CategoryLinkUi key={category.category_id}
+                data={category} />
             )}
         </div>
     )
