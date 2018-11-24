@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Router, Route, Switch } from 'react-router-dom'
+import { Router, Route, Switch, Redirect } from 'react-router-dom'
 import history from './services/history';
 import TopBar from './component/topBar/TopBar'
 import Category from './component/view_category/Category'
@@ -37,8 +37,16 @@ class App extends Component {
                 <DudeOverView dude_id={match.params.dude_id}
                 />}
               />
-              <Route exact path="/category/:category_id" render={({ match, history }) =>
-                <Category category_id={match.params.category_id}
+              <Route exact path="/category/:category_id" render={({ match, history }) => {
+              const link="/category/"+match.params.category_id+"/page/10/limit/0";
+                return <Redirect to={link} />}}
+                 //fix magic numbers to profile when done
+                 />
+              <Route exact path="/category/:category_id/page/:limit/limit/:offset" render={({ match, history }) =>
+                <Category 
+                  category_id={match.params.category_id}
+                  limit={match.params.limit}
+                  offset={match.params.offset}
                 />}
               />
               <Route exact path="/category/:category_id/forumpost/:forumpost_id" render={({ match, history }) =>

@@ -44,11 +44,6 @@ class CategoryLinkUi extends Component {
             last_post_forumpost_id
         } = this.props.data;
 
-        const options = {
-            year: 'numeric', month: 'numeric', day: 'numeric',
-            hour: 'numeric', minute: 'numeric', second: 'numeric',
-            hour12: false
-        };
         if (this.state.redirectCategory) {
             return <Redirect to={'/category/' + category_id} />
         } else if (this.state.redirectRecentPost) {
@@ -64,10 +59,15 @@ class CategoryLinkUi extends Component {
                     </div>
                     <div style={rightHalf}>
                         <p style={{ fontSize: '0.9em' }}>Posts: {forumpost_count}</p>
-                        <p style={{ fontSize: '0.9em' }} onClick={() => { this.redirectToRecentPoster() }}>
-                            Recent by: {lastposter_username} {last_post_time === null ? '-' : new Intl.DateTimeFormat('en-US', options).format(new Date(last_post_time))}
-                        </p>
-                        <p style={{ fontSize: '0.9em' }} onClick={() => { this.redirectToRecentPost() }}>{lastpost_title}</p>
+                        <RecentPosterLink
+                            lastposter_username={lastposter_username}
+                            last_post_time={last_post_time}
+                            redirectToRecentPoster={this.redirectToRecentPoster}
+                        />
+                        <RecentPostLink
+                            lastpost_title={lastpost_title}
+                            redirectToRecentPost={this.redirectToRecentPost}
+                        />
                     </div>
                 </div>
             )
@@ -76,6 +76,36 @@ class CategoryLinkUi extends Component {
 }
 
 export default CategoryLinkUi;
+
+const RecentPosterLink = ({ last_post_time, lastposter_username, redirectToRecentPoster }) => {
+    const dateOptions = {
+        year: 'numeric', month: 'numeric', day: 'numeric',
+        hour: 'numeric', minute: 'numeric', second: 'numeric',
+        hour12: false
+    };
+    if (last_post_time === null) {
+        return <p style={{ fontSize: '0.9em' }}>
+            Recent by: '-'
+        </p>
+    }
+    return <p>
+        <span>Recent by: </span>
+        <span style={pLinkStyle} onClick={() => { redirectToRecentPoster() }}>{lastposter_username}</span>
+        <span> {new Intl.DateTimeFormat('en-US', dateOptions).format(new Date(last_post_time))}</span>
+    </p>
+}
+
+const RecentPostLink = ({ lastpost_title, redirectToRecentPost }) => {
+
+    return lastpost_title === null ? <p></p>
+        : <p style={pLinkStyle} onClick={() => { redirectToRecentPost() }}>{lastpost_title}</p>
+}
+
+const pLinkStyle = {
+    cursor: 'pointer',
+    fontSize: '0.9em',
+    color: '#123add'
+}
 
 const leftHalf = {
     float: 'left',

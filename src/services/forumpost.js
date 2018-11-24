@@ -8,13 +8,23 @@ const getDetailedForumpost = async (forumpost_id)=> {
   return response.data
 }
 
-const getForumpostsByCategory = async (category_id) => {
-  const response = await axios.get(baseUrl + 'category/' + category_id)
+const getForumpostsByCategory = async (category_id, limit, offset) => {
+  const response = await axios.get(baseUrl + 'category/' + category_id, {
+    params: {
+      limit: limit,
+      offset: offset
+    }
+  })
   return response.data
 }
 
-const getForumpostsByDude = async (dude_id) => {
-  const response = await axios.get(baseUrl + 'dude/' + dude_id)
+const getForumpostsByDude = async (dude_id, limit, offset) => {
+  const response = await axios.get(baseUrl + 'dude/' + dude_id, {
+    params: {
+      limit: limit,
+      offset: offset
+    }
+  })
   return response.data
 }
 
@@ -29,4 +39,13 @@ const postComment = async (forumpost) => {
 
 }
 
-export default { postComment, getForumpostsByCategory, postForumpost, getForumpostsByDude, getDetailedForumpost }
+const getForumpostCountByCategory = async (category_id) => {
+  const response = await axios.get(baseUrl + 'count/category/'+category_id)
+  return response.data
+}
+const getForumpostCountByDude = async (dude_id) => {
+  const response = await axios.get(baseUrl + 'count/dude/'+dude_id)
+  return response.data
+}
+
+export default { postComment, getForumpostCountByDude, getForumpostCountByCategory, getForumpostsByCategory, postForumpost, getForumpostsByDude, getDetailedForumpost }

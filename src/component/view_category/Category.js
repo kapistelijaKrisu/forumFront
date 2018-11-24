@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { getForumpostsByCategory } from '../../reducers/forumposts'
-import {LinkUi, forumpostStyleId} from '../common/LinkUi'
+import { LinkUi, forumpostStyleId } from '../common/LinkUi'
+import { PagingRow } from '../common/PagingRow'
 
 class Category extends Component {
 
@@ -12,8 +13,9 @@ class Category extends Component {
     }
 
     componentWillMount = async () => {
-        if (this.props.category_id !== undefined) {
-            await this.props.getForumpostsByCategory(this.props.category_id)
+        const { category_id, limit = 20, offset = 0 } = this.props
+        if (category_id !== undefined) {
+            await this.props.getForumpostsByCategory(category_id, limit, offset)
         }
     }
 
@@ -27,13 +29,14 @@ class Category extends Component {
         }
         return (
             <div>
+                <div><p style={logoStyle}>YIPPIE</p></div>
                 <ul>
                     {this.props.forumposts.map(post =>
-                        <LinkUi key={post.forumpost_id} 
-                        data={post}
-                        path={`/category/${post.category_id}/forumpost/${post.forumpost_id}`}
-                        styleId={forumpostStyleId}
-                        title={post.title}
+                        <LinkUi key={post.forumpost_id}
+                            data={post}
+                            path={`/category/${post.category_id}/forumpost/${post.forumpost_id}`}
+                            styleId={forumpostStyleId}
+                            title={post.title}
                         />
                     )}
                 </ul>
@@ -45,7 +48,10 @@ class Category extends Component {
                         >Create a Post
                     </button>
                     </div>}
-
+                    <PagingRow
+                        pageType="category"
+                        parentId={this.props.category_id}
+                    />
             </div>
         )
     }
@@ -73,4 +79,10 @@ const forumpostButtonStyle = {
     border: 'none',
     borderRadius: '5px',
     background: 'linear-gradient(70deg, #e9eb50, #666)'
+}
+const logoStyle = {
+    cursor: 'pointer',
+    textAlign: 'center',
+    fontSize: '5.0em',
+    color: '#add123'
 }
