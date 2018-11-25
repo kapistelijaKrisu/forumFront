@@ -20,14 +20,12 @@ export class PagingRow extends Component {
     componentWillMount = async () => {
         const { pageType, parentId } = this.props
         const result = await calculateUrlByType(pageType, this.state.limitPerPage, parentId);
-          console.log(result)
         this.setState({ indeces: calculateIndeces(result) });
 
     }
 
     render() {
         const { pageType, parentId } = this.props
-        console.log(this.state.indeces)
         return (
             <div>
                 <div style={pagingRowStyle}>
@@ -44,11 +42,10 @@ export class PagingRow extends Component {
 }
 const calculateUrlByType = async (pageType, limit, parentId) => {
     limit = limit === 0 ? 10 : limit; 
-
     if (pageType === 'category') {
         return await forupostService.getForumpostCountByCategory(parentId) / limit
     } else if (pageType === 'dude') {
-        return await forupostService.getForumpostCountByDude(parentId) / limit
+        return await forupostService.getForumpostCountByCreator(parentId) / limit
     }
 }
 
@@ -59,12 +56,15 @@ const calculateIndeces = (pageCount) => {
     for (let i = 0; i < pageCount; i++) {
         indeces.push(i);
     }
+    if (pageCount === 0) {
+        return [0];
+    }
     return indeces;
 }
 
 const pagingRowStyle = {
     textAlign: 'center',
-    color: '000000',
+    color: '#FFF',
     padding: '1em',
     fontSize: '1.2em'
 }

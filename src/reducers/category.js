@@ -24,7 +24,6 @@ const sortByName = (category1, category2) => {
 export const getCategories = () => {
     return async (dispatch) => {
         const categories = await categorySerivce.getAllCategories()
-        console.log(categories)
         dispatch({
             type: GET_CATEGORIES,
             categories

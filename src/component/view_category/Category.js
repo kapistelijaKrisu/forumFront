@@ -22,9 +22,7 @@ class Category extends Component {
     }
 
     componentWillMount = async () => {
-        console.log('reload')
         const { category_id, limitPerPage = 20, page = 0 } = this.props
-        console.log('c', category_id, limitPerPage, page)
         if (category_id !== undefined) {
             await this.props.getForumpostsByCategory(category_id, limitPerPage, page * limitPerPage)
         }

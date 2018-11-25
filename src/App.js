@@ -33,12 +33,20 @@ class App extends Component {
             <Switch>
               <Route exact={true} path="/" component={Home}
               />
-              <Route exact path="/dude/:dude_id" render={({ match, history }) =>
-                <DudeOverView dude_id={match.params.dude_id}
+              <Route exact path="/dude/:dude_id" render={({ match, history }) => {
+              const link="/dude/"+match.params.dude_id+"/page/0/limit/10";
+                return <Redirect to={link} />}}
+                 //fix magic numbers to profile when done
+                 />
+              <Route exact path="/dude/:dude_id/page/:page/limit/:limitPerPage" render={({ match, history }) =>
+                <DudeOverView 
+                  dude_id={match.params.dude_id}
+                  page={match.params.page}
+                  limitPerPage={match.params.limitPerPage}
                 />}
               />
               <Route exact path="/category/:category_id" render={({ match, history }) => {
-              const link="/category/"+match.params.category_id+"/page/1/limit/10";
+              const link="/category/"+match.params.category_id+"/page/0/limit/10";
                 return <Redirect to={link} />}}
                  //fix magic numbers to profile when done
                  />

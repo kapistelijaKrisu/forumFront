@@ -43,9 +43,9 @@ const getForumpostCountByCategory = async (category_id) => {
   const response = await axios.get(baseUrl + 'count/category/'+category_id)
   return response.data
 }
-const getForumpostCountByDude = async (dude_id) => {
-  const response = await axios.get(baseUrl + 'count/dude/'+dude_id)
+const getForumpostCountByCreator = async (dude_id) => {
+  const response = await axios.get(baseUrl + 'count/creator/'+dude_id)
   return response.data
 }
 
-export default { postComment, getForumpostCountByDude, getForumpostCountByCategory, getForumpostsByCategory, postForumpost, getForumpostsByDude, getDetailedForumpost }
+export default { postComment, getForumpostCountByCreator, getForumpostCountByCategory, getForumpostsByCategory, postForumpost, getForumpostsByDude, getDetailedForumpost }

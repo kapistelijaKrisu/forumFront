@@ -1,4 +1,4 @@
-import forumposterivce from '../services/forumpost'
+import forumpostservice from '../services/forumpost'
 
 const GET_FORUMPOSTS = 'GET_FORUMPOSTS'
 const ADD_FORUMPOST = 'ADD_FORUMPOST'
@@ -16,7 +16,7 @@ const forumpostReducer = (store = [], action) => {
 
 export const getForumpostsByCategory = (category_id, limit, offset) => {
     return async (dispatch) => {
-        const forumposts = await forumposterivce.getForumpostsByCategory(category_id, limit, offset)
+        const forumposts = await forumpostservice.getForumpostsByCategory(category_id, limit, offset)
         dispatch({
             type: GET_FORUMPOSTS,
             forumposts
@@ -26,7 +26,7 @@ export const getForumpostsByCategory = (category_id, limit, offset) => {
 
 export const getForumpostsByDude = (dude_id, limit, offset) => {
     return async (dispatch) => {
-        const forumposts = await forumposterivce.getForumpostsByDude(dude_id, limit, offset)
+        const forumposts = await forumpostservice.getForumpostsByDude(dude_id, limit, offset)
         dispatch({
             type: GET_FORUMPOSTS,
             forumposts
@@ -36,7 +36,7 @@ export const getForumpostsByDude = (dude_id, limit, offset) => {
 
 export const addForumpost = (forumpost) => {
     return async (dispatch) => {
-        const response = await forumposterivce.postForumpost(forumpost)
+        const response = await forumpostservice.postForumpost(forumpost)
         dispatch({
             type: ADD_FORUMPOST,
             forumpost: response
