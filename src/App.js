@@ -38,15 +38,15 @@ class App extends Component {
                 />}
               />
               <Route exact path="/category/:category_id" render={({ match, history }) => {
-              const link="/category/"+match.params.category_id+"/page/10/limit/0";
+              const link="/category/"+match.params.category_id+"/page/1/limit/10";
                 return <Redirect to={link} />}}
                  //fix magic numbers to profile when done
                  />
-              <Route exact path="/category/:category_id/page/:limit/limit/:offset" render={({ match, history }) =>
+              <Route exact path="/category/:category_id/page/:page/limit/:limitPerPage" render={({ match, history }) =>
                 <Category 
                   category_id={match.params.category_id}
-                  limit={match.params.limit}
-                  offset={match.params.offset}
+                  page={match.params.page}
+                  limitPerPage={match.params.limitPerPage}
                 />}
               />
               <Route exact path="/category/:category_id/forumpost/:forumpost_id" render={({ match, history }) =>

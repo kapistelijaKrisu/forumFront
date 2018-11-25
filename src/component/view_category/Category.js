@@ -12,10 +12,21 @@ class Category extends Component {
         }
     }
 
+    componentDidUpdate = async (prevProps) => {
+        if (this.props.page !== prevProps.page ||
+            this.props.category_id !== prevProps.category_id ||
+            this.props.limitPerPage !== prevProps.limitPerPage) {
+
+            await this.componentWillMount();
+        }
+    }
+
     componentWillMount = async () => {
-        const { category_id, limit = 20, offset = 0 } = this.props
+        console.log('reload')
+        const { category_id, limitPerPage = 20, page = 0 } = this.props
+        console.log('c', category_id, limitPerPage, page)
         if (category_id !== undefined) {
-            await this.props.getForumpostsByCategory(category_id, limit, offset)
+            await this.props.getForumpostsByCategory(category_id, limitPerPage, page * limitPerPage)
         }
     }
 
@@ -48,10 +59,10 @@ class Category extends Component {
                         >Create a Post
                     </button>
                     </div>}
-                    <PagingRow
-                        pageType="category"
-                        parentId={this.props.category_id}
-                    />
+                <PagingRow
+                    pageType="category"
+                    parentId={this.props.category_id}
+                />
             </div>
         )
     }
@@ -62,11 +73,12 @@ const mapStateToProps = (state) => {
         forumposts: state.forumposts
     }
 }
+
 export default connect(
     mapStateToProps,
     { getForumpostsByCategory }
-
 )(Category)
+
 
 const forumpostButtonStyle = {
     cursor: 'pointer',
