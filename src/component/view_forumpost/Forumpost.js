@@ -52,8 +52,7 @@ class Forumpost extends Component {
                             style={viewpostStyle} />
                     )}
                 </div>
-                {this.props.dude === null ? <p> login to comment </p>
-                    : <CommentForm />}
+                <CommentForm />
 
 
             </div>

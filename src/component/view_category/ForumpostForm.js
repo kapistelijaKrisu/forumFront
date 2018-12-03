@@ -19,7 +19,7 @@ class ForumpostForm extends Component {
         autosize(this.textarea);
     }
 
-    handleLoginFieldChange = (event) => {
+    handleFieldChange = (event) => {
         this.setState({ [event.target.name]: event.target.value })
     }
     postForumpost = async (event) => {
@@ -58,7 +58,7 @@ class ForumpostForm extends Component {
                             type="text"
                             name="title"
                             value={this.state.title}
-                            onChange={this.handleLoginFieldChange}
+                            onChange={this.handleFieldChange}
                         />
                         <p style={{ paddingTop: '1em' }}>Content</p>
                         <textarea
@@ -68,7 +68,7 @@ class ForumpostForm extends Component {
                             type="text"
                             name="content"
                             value={this.state.content}
-                            onChange={this.handleLoginFieldChange}
+                            onChange={this.handleFieldChange}
                         />
                         <br />
                         <button

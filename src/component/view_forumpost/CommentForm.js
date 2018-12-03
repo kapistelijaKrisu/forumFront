@@ -11,9 +11,22 @@ class CommentForm extends React.Component {
             content: ''
         }
     }
-    componentD_idMount() {
+    componentDidMount() {
+        const {dude, forumpost} = this.props;
+        if (dude === null) {
+            this.setState({content: 'Log in to comment'}) 
+        } else if (!!forumpost.disabled) {
+            this.setState({content: 'This post is locked!'}) 
+        } else {
+            this.setState({content: ''}) 
+        }
         autosize(this.textarea);
     }
+    componentDidUpdate(prevProps) {
+        if (this.props.dude !== prevProps.dude || this.props.forumpost.disabled !== prevProps.forumpost.disabled) {
+          this.componentDidMount();
+        }
+      }
 
     handleLoginFieldChange = (event) => {
         this.setState({ [event.target.name]: event.target.value })
@@ -33,8 +46,12 @@ class CommentForm extends React.Component {
     }
 
     render() {
+        const {dude, forumpost} = this.props
+        const disabled = (dude === null || forumpost.disabled === true);
+   
+        if (!disabled) {
         return (
-            <div style={{ margin: 'auto' }}>
+            <div>
                 <form style={commentFormStyle} onSubmit={this.postComment}>
                     <textarea
                         style={commentTextStyle}
@@ -49,7 +66,15 @@ class CommentForm extends React.Component {
                     <button style={forumpostButtonStyle} type="submit">comment</button>
                 </form>
             </div>
-        )
+        )} else {
+            return (
+                <div style={commentFormStyle}>
+                    <p style={commentTextStyle}>
+                        {this.state.content}
+                    </p>
+                </div>
+            )
+        }
     }
 }
 const mapStateToProps = (state) => {
@@ -83,7 +108,8 @@ const commentFormStyle = {
     width: '100%',
     fontSize: 28,
     fontStyle: 'bold',
-    background: 'linear-gradient(70deg, #333, #777)'
+    background: 'linear-gradient(70deg, #333, #777)',
+    padding: '2px'
 }
 const forumpostButtonStyle = {
     marginLeft: '0.5em',
