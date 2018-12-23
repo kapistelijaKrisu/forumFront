@@ -33,6 +33,11 @@ const postForumpost = async (forumpost) => {
   return response.data
 }
 
+const putForumpost = async (forumpost) => {
+  const response = await axios.put(baseUrl, forumpost, dudeservice.getHeaders())
+  return response.data
+}
+
 const postComment = async (forumpost) => {
   const response = await axios.post('/api/comment', forumpost, dudeservice.getHeaders())
   return response.data
@@ -48,4 +53,4 @@ const getForumpostCountByCreator = async (dude_id) => {
   return response.data
 }
 
-export default { postComment, getForumpostCountByCreator, getForumpostCountByCategory, getForumpostsByCategory, postForumpost, getForumpostsByDude, getDetailedForumpost }
+export default { postComment, getForumpostCountByCreator, getForumpostCountByCategory, getForumpostsByCategory, postForumpost, getForumpostsByDude, getDetailedForumpost, putForumpost }

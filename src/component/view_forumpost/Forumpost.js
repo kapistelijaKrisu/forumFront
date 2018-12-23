@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Redirect } from "react-router-dom"
-import { getDetailedForumPost } from '../../reducers/detailedForumpost'
+import { getDetailedForumPost, editForumPost } from '../../reducers/detailedForumpost'
 import Comment from './Comment'
 import CommentForm from './CommentForm'
 import autosize from 'autosize'
@@ -29,8 +29,22 @@ class Forumpost extends Component {
         //   window.location = `/category/${category_id}`
     }
 
+    lockPost = () => {
+        if (this.props.dude.isMod === true) {
+            this.props.editForumPost(this.props.detailedForumpost, this.isLocked() ? false : true)
+        }
+    }
+
+    isLocked = () => {
+        return this.props.detailedForumpost.disabled;
+    }
+
     render() {
-        const redirectLink = `/category/${this.props.detailedForumpost.category_id}`
+        console.log(this.props.detailedForumpost)
+        const {detailedForumpost} = this.props
+        const redirectLink = `/category/${detailedForumpost.category_id}`
+        this.isLocked() ? bg = 'linear-gradient(70deg, #000, #123456)'
+        : bg = 'linear-gradient(70deg, #000, #8b1a1a)'
         return (
             <div style={{
                 margin: 'auto',
@@ -39,14 +53,19 @@ class Forumpost extends Component {
                 {this.state.redirect ?
                     <Redirect to={redirectLink} />
                     :
-                    <p
-                        style={categoryStyle}
-                        onClick={() => { this.linkToCategory() }}
-                    > > {this.props.detailedForumpost.categoryname}
+                    <p style={{display: 'flex', width: '95%', justifyContent: 'space-between'}}>
+                        <span style={categoryStyle}
+                            onClick={() => { this.linkToCategory() }}>
+                            {detailedForumpost.categoryname}
+                        </span>
+                    <button
+                            style={categoryStyle2}
+                            onClick={() => { this.lockPost() }}
+                        >  LOCK POST</button>
                     </p>}
                 <div style={ledivstylie}>
                     <br />
-                    {this.props.detailedForumpost.comments.map(comment =>
+                    {detailedForumpost.comments.map(comment =>
                         <Comment key={comment.comment_id}
                             comment={comment}
                             style={viewpostStyle} />
@@ -67,7 +86,7 @@ const mapStateToProps = (state) => {
 }
 export default connect(
     mapStateToProps,
-    { getDetailedForumPost }
+    { getDetailedForumPost, editForumPost: editForumPost }
 
 )(Forumpost)
 
@@ -82,13 +101,28 @@ const categoryStyle = {
     marginTop: '2px',
     paddingTop: 15,
     marginLeft: '5%',
-    width: '90%',
     fontFamily: 'Amaranth',
     fontStyle: 'italic',
     fontSize: '1.3em',
     cursor: 'pointer',
     color: '#ccc',
     textDecoration: 'underline'
+}
+
+let bg = '';
+
+const categoryStyle2 = {
+    paddingTop: 12,
+    marginTop: 10,
+    fontFamily: 'Amaranth',
+    fontSize: '1.3em',
+    cursor: 'pointer',
+    whiteSpace: 'nowrap',
+    fontWeight: 'bold',
+    color: '#DCDCDC',
+    border: 'none',
+    borderRadius: '5px',
+    background: bg
 }
 
 const viewpostStyle = {
