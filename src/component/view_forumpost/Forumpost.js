@@ -40,7 +40,6 @@ class Forumpost extends Component {
     }
 
     render() {
-        console.log(this.props.detailedForumpost)
         const {detailedForumpost} = this.props
         const redirectLink = `/category/${detailedForumpost.category_id}`
         this.isLocked() ? bg = 'linear-gradient(70deg, #000, #123456)'
@@ -59,7 +58,7 @@ class Forumpost extends Component {
                             {detailedForumpost.categoryname}
                         </span>
                     <button
-                            style={categoryStyle2}
+                            style={lockButtonStyle}
                             onClick={() => { this.lockPost() }}
                         >  LOCK POST</button>
                     </p>}
@@ -111,7 +110,7 @@ const categoryStyle = {
 
 let bg = '';
 
-const categoryStyle2 = {
+const lockButtonStyle = {
     paddingTop: 12,
     marginTop: 10,
     fontFamily: 'Amaranth',
@@ -119,7 +118,7 @@ const categoryStyle2 = {
     cursor: 'pointer',
     whiteSpace: 'nowrap',
     fontWeight: 'bold',
-    color: '#DCDCDC',
+    color: '#8B0000',
     border: 'none',
     borderRadius: '5px',
     background: bg
