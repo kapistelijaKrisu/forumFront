@@ -5,7 +5,7 @@ const crashReporter = () => next => async action => {
         return await next(action); // dispatch
     } catch (error) {
         if (error.response) {
-            let msg = 'Unknow error!'
+            let msg = 'Unknown error!'
             switch (error.response.status) {
                 case 500:
                     msg = serverShat()
@@ -18,6 +18,9 @@ const crashReporter = () => next => async action => {
                     break;
                 case 403:
                     msg = notAuthorized()
+                    break;
+                case 401: //bad credentials
+                    msg = badRequest(error.response.data.error)
                     break;
                 default:
                     break;
@@ -51,7 +54,7 @@ const notFound = () => {
 }
 
 const notAuthorized = () => {
-    return 'Not found!'
+    return 'Not fo u'
 }
 
 
