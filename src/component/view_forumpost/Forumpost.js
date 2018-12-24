@@ -30,7 +30,8 @@ class Forumpost extends Component {
     }
 
     lockPost = () => {
-        if (this.props.dude.isMod === true) {
+        const { dude } = this.props;
+        if (dude !== undefined && dude !== null && dude.isMod === true) {
             this.props.editForumPost(this.props.detailedForumpost, this.isLocked() ? false : true)
         }
     }
@@ -40,10 +41,24 @@ class Forumpost extends Component {
     }
 
     render() {
-        const {detailedForumpost} = this.props
+        const { detailedForumpost, dude } = this.props
         const redirectLink = `/category/${detailedForumpost.category_id}`
-        this.isLocked() ? bg = 'linear-gradient(70deg, #000, #123456)'
-        : bg = 'linear-gradient(70deg, #000, #8b1a1a)'
+        let editButton = <div></div>
+        if (dude !== undefined && dude !== null && !!dude.isMod) {
+            let bg;
+            let text;
+            if (this.isLocked()) {
+                bg = 'linear-gradient(70deg, #333, #008F41)';
+                text = 'UNLOCK POST'
+            } else {
+                bg = 'linear-gradient(70deg, #000, #8B0000)'
+                text = 'LOCK POST'
+            }
+            editButton = <button
+                style={{ ...lockButtonStyle, ...{ background: bg } }}
+                onClick={() => { this.lockPost() }}
+            >  {text}</button>
+        }
         return (
             <div style={{
                 margin: 'auto',
@@ -52,15 +67,12 @@ class Forumpost extends Component {
                 {this.state.redirect ?
                     <Redirect to={redirectLink} />
                     :
-                    <p style={{display: 'flex', width: '95%', justifyContent: 'space-between'}}>
+                    <p style={{ display: 'flex', width: '95%', justifyContent: 'space-between' }}>
                         <span style={categoryStyle}
                             onClick={() => { this.linkToCategory() }}>
                             {detailedForumpost.categoryname}
                         </span>
-                    <button
-                            style={lockButtonStyle}
-                            onClick={() => { this.lockPost() }}
-                        >  LOCK POST</button>
+                        {editButton}
                     </p>}
                 <div style={ledivstylie}>
                     <br />
@@ -108,8 +120,6 @@ const categoryStyle = {
     textDecoration: 'underline'
 }
 
-let bg = '';
-
 const lockButtonStyle = {
     paddingTop: 12,
     marginTop: 10,
@@ -118,10 +128,9 @@ const lockButtonStyle = {
     cursor: 'pointer',
     whiteSpace: 'nowrap',
     fontWeight: 'bold',
-    color: '#8B0000',
+    color: '#AAA',
     border: 'none',
-    borderRadius: '5px',
-    background: bg
+    borderRadius: '5px'
 }
 
 const viewpostStyle = {
