@@ -28,7 +28,7 @@ class CommentForm extends React.Component {
         }
       }
 
-    handleLoginFieldChange = (event) => {
+    handleFieldChange = (event) => {
         this.setState({ [event.target.name]: event.target.value })
     }
     postComment = async (event) => {
@@ -60,7 +60,7 @@ class CommentForm extends React.Component {
                         type="text"
                         name="content"
                         value={this.state.content}
-                        onChange={this.handleLoginFieldChange}
+                        onChange={this.handleFieldChange}
                     />
                     <br />
                     <button style={forumpostButtonStyle} type="submit">comment</button>
