@@ -8,6 +8,7 @@
   "dependencies": {
     "autosize": "^4.0.2",
     "axios": "^0.17.1",
+    "clone": "^2.1.2",
     "prop-types": "^15.6.1",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
@@ -23,7 +24,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
-    "kill3002": "fuser -k 3002/tcp" 
+    "kill3002": "fuser -k 3002/tcp"
   },
   "proxy": "http://localhost:3002",
   "devDependencies": {

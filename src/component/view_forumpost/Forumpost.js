@@ -67,19 +67,18 @@ class Forumpost extends Component {
                 {this.state.redirect ?
                     <Redirect to={redirectLink} />
                     :
-                    <p style={{ display: 'flex', width: '95%', justifyContent: 'space-between' }}>
+                    <div style={{ display: 'flex', width: '95%', justifyContent: 'space-between' }}>
                         <span style={categoryStyle}
                             onClick={() => { this.linkToCategory() }}>
                             {detailedForumpost.categoryname}
                         </span>
                         {editButton}
-                    </p>}
+                    </div>}
                 <div style={ledivstylie}>
                     <br />
-                    {detailedForumpost.comments.map(comment =>
+                    {this.props.detailedForumpost.comments.map(comment =>
                         <Comment key={comment.comment_id}
-                            comment={comment}
-                            style={viewpostStyle} />
+                            comment_id={comment.comment_id} />
                     )}
                 </div>
                 <CommentForm />
@@ -131,21 +130,4 @@ const lockButtonStyle = {
     color: '#AAA',
     border: 'none',
     borderRadius: '5px'
-}
-
-const viewpostStyle = {
-    borderRadius: '4px',
-    border: 'solid',
-    borderWidth: 1,
-    borderColor: '#888',
-    whiteSpace: 'pre-line',
-    resize: 'none',
-    marginLeft: '5%',
-    marginTop: '1%',
-    fontSize: '1.2em',
-    width: '90%',
-    fontFamily: 'Amaranth',
-    color: '#ccc',
-    background: 'linear-gradient(70deg, #222, #555)'
-
 }

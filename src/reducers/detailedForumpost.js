@@ -1,4 +1,5 @@
 import forumpostservice from '../services/forumpost'
+import clone from 'clone'
 
 const GET_FORUMPOST = 'GET_DETAILED_FORUMPOST'
 const ADD_COMMENT = 'ADD_COMMENT'
@@ -16,16 +17,16 @@ const commentsReducer = (store = { comments: [] }, action) => {
             edited.disabled = action.forumpost.disabled
             return edited
         case EDIT_COMMENT:
-            const editedComment = Object.assign({}, store.comments.find(c => (c.comment_id === action.comment.comment_id)))
-            editedComment.content = action.forumpost.content
-            editedComment.edited = action.forumpost.edited
-            editedComment.deleted = action.forumpost.deleted
-
-            const editedStore = Object.assign({}, store)
-            editedStore.comments = store.comments.filter(c => (c.comment_id !== action.comment.comment_id))
-            editedStore.comments.push(editedComment)
-            editedStore.comments.sort( (a, b) => (a.posttime < b.posttime))
-            return editedStore
+        let copy = clone(store)
+            copy.comments = copy.comments.map((item, index) => {
+                if (item.comment_id !== action.comment.comment_id) { return item }
+                let c  = Object.assign({}, item)
+                c.content = action.comment.content
+                c.edited = action.comment.edited
+                c.deleted = action.comment.deleted
+                return c;
+            })
+            return copy
         case ADD_COMMENT:
             const newStore = Object.assign({}, store)
             newStore.comments.push(action.comment)
@@ -56,14 +57,11 @@ export const addComment = (comment) => {
 }
 
 export const editComment = (comment) => {
-    console.log('edit')
     return async (dispatch) => {
-        console.log('nnn')
-        const response = await forumpostservice.editComment(comment)
-        console.log(response)
+        const editedComment = await forumpostservice.editComment(comment)
         dispatch({
             type: EDIT_COMMENT,
-            comment: response
+            comment: editedComment
         })
     }
 }
