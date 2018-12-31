@@ -9,14 +9,12 @@ class Comment extends React.Component {
     super()
     this.state = {
       content: '',
-      comment: null,
       editingStatus: false
     }
   }
 
   componentDidMount() {
-    const comment = this.props.comments.find(c => (c.comment_id === this.props.comment_id))
-    this.setState({ comment: comment, editingStatus: false })
+    this.setState({ editingStatus: false })
     autosize(this.textarea);
   }
 
@@ -25,8 +23,8 @@ class Comment extends React.Component {
   }
 
   showEditButtonToCreator = () => {
-    const { dude } = this.props;
-    const { comment, editingStatus } = this.state;
+    const { dude, comment } = this.props;
+    const { editingStatus } = this.state;
     if (comment.deleted) {
       return <div></div>
     }
@@ -47,23 +45,23 @@ class Comment extends React.Component {
 
   deleteComment = async () => {
     try {
-      await this.props.editComment({ deleted: true, comment_id: this.state.comment.comment_id })
+      await this.props.editComment({ deleted: true, comment_id: this.props.comment.comment_id })
       this.props.notify('Deleted successfully!', 'success', 11)
-      this.componentDidMount() //reducer isnt launched quick fix for now
     } catch (e) { }
   }
 
   submitEdit = async () => {
     try {
-      const { content, comment } = this.state;
+      const { content } = this.state;
+      const { comment } = this.props;
       if (content.trim() === '') {
         this.props.notify('Cannot be empty message!')
       } else if (content === comment.content) {
         this.props.notify('Message is identical to original')
       } else {
         await this.props.editComment({ content: content, comment_id: comment.comment_id })
-        this.componentDidMount() //reducer isnt launched quick fix for now
         this.props.notify('Updated!', 'success')
+        this.componentDidMount();
       }
     } catch (e) { }
   }
@@ -71,7 +69,7 @@ class Comment extends React.Component {
   render() {
     const { dude } = this.props;
     const isMod = dude !== undefined && dude !== null && dude.isMod;
-    const { comment } = this.state;
+    const { comment } = this.props;
     if (comment === null || comment === undefined) {
       return <div></div>
     }

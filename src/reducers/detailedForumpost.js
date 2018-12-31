@@ -18,7 +18,7 @@ const commentsReducer = (store = { comments: [] }, action) => {
             return edited
         case EDIT_COMMENT:
         let copy = clone(store)
-            copy.comments = copy.comments.map((item, index) => {
+            copy.comments = copy.comments.map((item) => {
                 if (item.comment_id !== action.comment.comment_id) { return item }
                 let c  = Object.assign({}, item)
                 c.content = action.comment.content

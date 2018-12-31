@@ -78,7 +78,7 @@ class Forumpost extends Component {
                     <br />
                     {this.props.detailedForumpost.comments.map(comment =>
                         <Comment key={comment.comment_id}
-                            comment_id={comment.comment_id} />
+                        comment={comment} />
                     )}
                 </div>
                 <CommentForm />

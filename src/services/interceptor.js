@@ -25,7 +25,6 @@ const crashReporter = () => next => async action => {
                 default:
                     break;
             }
-            console.log(msg)
             await next(notify(msg))
             throw error; // re-throw error
         }

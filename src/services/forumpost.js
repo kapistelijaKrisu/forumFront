@@ -45,7 +45,6 @@ const postComment = async (forumpost) => {
 }
 
 const editComment = async (comment) => {
-  console.log('aa')
   const response = await axios.put('/api/comment', comment, dudeservice.getHeaders())
   return response.data
 }
