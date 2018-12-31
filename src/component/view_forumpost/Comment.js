@@ -77,7 +77,6 @@ class Comment extends React.Component {
     if (isMod === true && comment.deleted === false) {
       deleteButton = <button style={banStyle} onClick={this.deleteComment}>Delete</button>
     }
-
     //if not mod and deleted
     if (comment.deleted === true) {
       if (!isMod) {
