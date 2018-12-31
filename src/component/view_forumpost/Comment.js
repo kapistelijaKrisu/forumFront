@@ -23,9 +23,9 @@ class Comment extends React.Component {
   }
 
   showEditButtonToCreator = () => {
-    const { dude, comment } = this.props;
+    const { dude, comment, detailedForumpost } = this.props;
     const { editingStatus } = this.state;
-    if (comment.deleted) {
+    if (comment.deleted || detailedForumpost.disabled) {
       return <div></div>
     }
     const changeEditStatus = () => {
@@ -159,7 +159,7 @@ const formatDate = (dateString) => {
 
 const mapStateToProps = (state) => {
   return {
-    comments: state.detailedForumpost.comments,
+    detailedForumpost: state.detailedForumpost,
     dude: state.dude
   }
 }
