@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { getForumpostsByCategory } from '../../reducers/forumposts'
-import { LinkUi, forumpostStyleId } from '../common/LinkUi'
+import { ForumpostLink, forumpostStyleId } from '../common/ForumpostLink'
 import { PagingRow } from '../common/PagingRow'
 
 class Category extends Component {
@@ -36,12 +36,14 @@ class Category extends Component {
         if (this.props.forumposts === undefined) {
             return <div />
         }
+        console.log(this.props.forumposts[0])
+        console.log(this.props.forumposts[1])
         return (
             <div>
                 <div><p style={logoStyle}>YIPPIE</p></div>
                 <ul>
                     {this.props.forumposts.map(post =>
-                        <LinkUi key={post.forumpost_id}
+                        <ForumpostLink key={post.forumpost_id}
                             data={post}
                             path={`/category/${post.category_id}/forumpost/${post.forumpost_id}`}
                             styleId={forumpostStyleId}

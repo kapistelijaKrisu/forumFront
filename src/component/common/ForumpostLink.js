@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Redirect } from "react-router-dom"
 import history from '../../services/history';
 
-export class LinkUi extends Component {
+export class ForumpostLink extends Component {
     constructor() {
         super()
         this.state = {
@@ -19,6 +19,7 @@ export class LinkUi extends Component {
         if (this.props.data === undefined) {
             return <div />
         }
+      //  console.log(this.props.data)
         return (
             <div>{ this.state.redirect ?
             <Redirect to={this.props.path} />

@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { LinkUi, forumpostStyleId } from '../common/LinkUi'
+import { ForumpostLink, forumpostStyleId } from '../common/ForumpostLink'
 import { getForumpostsByDude } from '../../reducers/forumposts'
 import { PagingRow } from '../common/PagingRow';
 
@@ -27,7 +27,7 @@ class DudeOverView extends Component {
                 <div>
                     <ul>
                         {this.props.forumposts.map(post =>
-                            <LinkUi key={post.forumpost_id}
+                            <ForumpostLink key={post.forumpost_id}
                                 data={post}
                                 path={`/category/${post.category_id}/forumpost/${post.forumpost_id}`}
                                 styleId={forumpostStyleId}
