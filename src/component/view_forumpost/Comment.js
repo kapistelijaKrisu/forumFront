@@ -86,7 +86,7 @@ class Comment extends React.Component {
           <UpperBox
             comment={comment}
             deleteButton={deleteButton}
-            editButton={editButton} />
+            editButton={<span></span>} />
           <br />
           <p style={{ marginTop: '1px', paddingTop: 0 }}>DELETED BY MOD</p></div>
       }
